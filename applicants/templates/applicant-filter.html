@@ -1,0 +1,21 @@
+{% extends "applicants-base.html" %}
+{% block content %}
+<head>
+    <title>Applicant Filter Form</title>
+</head>
+
+<body>
+
+  <h2>Applicant Filter Form</h2>
+
+  <!-- Filter Form -->
+  <form method="post" enctype="multipart/form-data" action="{% url 'applicant-filter' request.user.id %}">
+    {% csrf_token %}
+    
+    {{ filter_form.as_p }}
+    
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+</body>
+{% endblock  %}

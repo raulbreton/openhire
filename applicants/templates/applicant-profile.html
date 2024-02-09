@@ -1,0 +1,21 @@
+{% extends "applicants-base.html" %}
+{% block content %}
+<head>
+    <title>Applicant Profile Form</title>
+</head>
+
+<body>
+
+  <h2>Applicant Profile Form</h2>
+
+  <!-- Personal_Data Form -->
+  <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+</body>
+{% endblock  %}
