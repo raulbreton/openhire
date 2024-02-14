@@ -1,0 +1,19 @@
+{% extends "job_offer-base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Job Offer Template - Step 2</title>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data" action="#">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Concluir</button>
+    </form>
+    <script>
+    console.log("{{ combined_data }}");
+</script>
+
+</body>
+{% endblock %}

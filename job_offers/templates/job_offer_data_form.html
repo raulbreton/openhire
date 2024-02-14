@@ -1,0 +1,31 @@
+{% extends "job_offer-base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Job Offer Template</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'employers-home' %}">
+            <img src="{% static 'home_icon.ico' %}"alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            OpenHire
+            </a>
+        </div>
+    </nav>
+
+  <h2>Job Offer Template {{company_name}}</h2>
+
+    <!-- Personal_Data Form -->
+    <form method="post" enctype="multipart/form-data" action="#">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Siguiente</button>
+    </form>
+
+</body>
+{% endblock  %}
