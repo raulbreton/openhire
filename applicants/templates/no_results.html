@@ -1,0 +1,24 @@
+{% extends "applicants-base.html" %}
+{% block content %}
+    <br><br><br>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h1>Encuentra tu siguiente empleo</h1>
+        </div>
+        <br>
+
+        <form class="d-flex" role="search" method="GET" action="{% url 'search_job_offers' %}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="job_title">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <br>
+
+        <p>La búsqueda empleos de <strong>"{{ job_title_query }}"</strong> no ha producido ningún resultado.</p>
+        <strong><p>Sugerencias de búsqueda:</strong></p>
+        <ul>
+            <li>Intenta usar palabras más generales</li>
+            <li>Comprueba que no haya faltas de ortografía</li>
+            <li>Usa palabras completas en lugar de abreviaturas</li>
+        </ul>
+    </div>
+{% endblock  %}

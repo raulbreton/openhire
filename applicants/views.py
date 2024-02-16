@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import ApplicantProfile
 from users.models import CustomUser
 from .forms import ApplicantProfileForm, ApplicantFilterForm
+from job_offers.models import JobOffer
 
 def applicants_home(request):
     return render( request, "applicants-home.html")
@@ -52,3 +53,12 @@ def applicant_filter(request, pk):
     }
 
     return render(request, 'applicant-filter.html', context)
+
+def search_job_offers(request):
+    job_title_query = request.GET.get('job_title', '')
+    job_offers = JobOffer.objects.filter(job_title__icontains=job_title_query)
+
+    if not job_offers:
+        return render(request, 'no_results.html', {'job_title_query': job_title_query})
+    
+    return render(request, 'search_results.html', {'job_offers': job_offers})

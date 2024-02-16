@@ -32,7 +32,9 @@ def job_offer_data_view(request):
     else:
         form = JobOfferDataForm()
         company_name = EmployerProfile.objects.get(user=request.user).company_name  # Retrieve company name from employer's profile
-        initial_data = {'company_name': company_name}
+        state = EmployerProfile.objects.get(user=request.user).state  # Retrieve company name from employer's profile
+        municipality = EmployerProfile.objects.get(user=request.user).municipality  # Retrieve company name from employer's profile
+        initial_data = {'company_name': company_name, 'state': state, 'municipality': municipality}
         form = JobOfferDataForm(initial=initial_data)
 
     return render(request, 'job_offer_data_form.html', {'form': form, 'company_name': company_name})
