@@ -14,17 +14,21 @@
       <ul class="list-group application-list">
         <h3>Aplicaciones</h3>
         {% for application in applications %}
-            <a href="{% url 'application_details' request.user.id application.job_offer.id application.id %}" class="list-group-item list-group-item-action application-item">{{ application.candidate }}</a>
+            <a href="{% url 'application_details' request.user.id application.job_offer.id application.id %}" class="list-group-item list-group-item-action application-item">{{ application.candidate.first_name }}</a>
         {% endfor %}
       </ul>
-    {% endif %}
 
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ application.candidate.user.email }}</h5>
-        <p class="card-text">Cover Letter: {{ application.cover_letter }}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+      {% if application %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ application.candidate.first_name }}</h5>
+          <p class="card-text">Cover Letter: {{ application.cover_letter }}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
-    </div>
+
+      {% endif %}
+
+    {% endif %}
 
 {% endblock %}
