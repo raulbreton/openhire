@@ -1,0 +1,12 @@
+{% extends 'base-employer_dashboard.html' %}
+{% load static %}
+{% block content %}
+  <h2>Tus Ofertas de Trabajo</h2>
+  <ul>
+    {% for job_offer in job_offers %}
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action">{{ job_offer.job_title }}</a>
+    </div>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -25,6 +25,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'create-job_offer' %}">Crear Oferta de Empleo</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'employer-dashboard' request.user.id %}">Mi Panel de Ofertas de Empleo</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
               Mi Perfil
