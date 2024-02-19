@@ -8,6 +8,11 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+    font-size: medium;
+}
+
 /* LISTA DE OFERTAS */
 
 ul {
@@ -16,8 +21,8 @@ ul {
 }
 
 .list-group {
-    width: 25%; /* Establece el ancho al 25% de la plantilla */
-    float: left; /* Hace que el elemento flote a la derecha */
+    width: 15%;
+    float: left;
 }
 
 .list-group-item {
@@ -25,8 +30,15 @@ ul {
     /* Por ejemplo, puedes establecer colores, márgenes, padding, etc. */
 }
 
-/* LISTA DE APLICACIONES */
-.list-group-applications {
-    width: 50%; /* Establece el ancho al 25% de la plantilla */
-    float: right; /* Hace que el elemento flote a la derecha */
+.application-list{
+    width: 20%;
+}
+
+.application-item{
+    background-color: rgb(192, 230, 249);
+}
+
+.card{
+    margin-right: 100px;
+    margin-left: 800px;
 }

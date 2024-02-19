@@ -5,7 +5,7 @@ from employers.views import employers_home, employer_profile
 from applicants.views import applicants_home, applicant_profile, applicant_filter, search_job_offers
 from job_offers.views import job_offer_data_view, select_boolean_fields
 from job_applications.views import apply_for_job
-from employers_dashboard.views import job_offers, job_applications
+from employers_dashboard.views import job_offers, job_applications, application_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +29,5 @@ urlpatterns = [
     #EMPLOYERS DASHBOARD
     path('dashboard/<int:pk>/', job_offers, name='employer-dashboard'),
     path('job_applications/<int:pk>/<int:job_offer_id>/', job_applications, name='job_applications'),
+    path('job_applications/<int:pk>/<int:job_offer_id>/<int:application_id>/', application_details, name='application_details'),
 ]

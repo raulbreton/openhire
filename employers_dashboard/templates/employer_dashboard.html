@@ -1,24 +1,30 @@
 {% extends 'base-employer_dashboard.html' %}
 {% load static %}
 {% block content %}
-  <h2>Tus Ofertas de Trabajo</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <ul class="list-group">
-        {% for job_offer in job_offers %}
-          <a href="{% url 'job_applications' request.user.id job_offer.id %}" class="list-group-item list-group-item-action">{{ job_offer.job_title }}</a>
+
+  <h2>Ofertas de Trabajo de {{job_offer.company_name}}</h2>
+    <ul class="list-group">
+      <h3>Mis Ofertas de Trabajo</h3>
+      {% for job_offer in job_offers %}
+        <a href="{% url 'job_applications' request.user.id job_offer.id %}" class="list-group-item list-group-item-action">{{ job_offer.job_title }}</a>
+      {% endfor %}
+    </ul>
+
+    {% if applications %}
+      <ul class="list-group application-list">
+        <h3>Aplicaciones</h3>
+        {% for application in applications %}
+            <a href="{% url 'application_details' request.user.id application.job_offer.id application.id %}" class="list-group-item list-group-item-action application-item">{{ application.candidate }}</a>
         {% endfor %}
       </ul>
+    {% endif %}
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ application.candidate.user.email }}</h5>
+        <p class="card-text">Cover Letter: {{ application.cover_letter }}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
 
-  {% if applications %}
-    <div class="col-md-6">
-      <ul class="list-group">
-        {% for application in applications %}
-            <a href="#" class="list-group-item list-group-item-action">{{ application.candidate }}</a>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-  </div>
 {% endblock %}
