@@ -1,0 +1,32 @@
+{% extends "base-applicants_dashboard.html" %}
+{% block content %}
+
+    <ul class="list-group">
+        <h3>Mis Ofertas de Trabajo</h3>
+        
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item list-group-item-dark">Empleo</li>
+            <li class="list-group-item list-group-item list-group-item-dark">Compañia</li>
+            <li class="list-group-item list-group-item list-group-item-dark">Fecha de Aplicación</li>
+            <li class="list-group-item list-group-item list-group-item-dark">Estado de la Aplicación</li>
+        </ul>
+
+        {% for application in applications %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ application.job_offer.job_title }}</li>
+                <li class="list-group-item">{{application.job_offer.company_name}}</li>
+                <li class="list-group-item">{{application.application_date}}</li>
+                {% if application.status == 'Rechazado' %}
+                <li class="list-group-item list-group-item list-group-item-danger">{{application.status}}</li>
+                {% elif application.status == 'En Revisión' %}
+                <li class="list-group-item list-group-item list-group-item-warning">{{application.status}}</li>
+                {% elif application.status == 'Aceptado' %}
+                <li class="list-group-item list-group-item list-group-item-success">{{application.status}}</li>
+                {% else %}
+                <li class="list-group-item">{{application.status}}</li>
+                {% endif %}
+            </ul>
+        {% endfor %}
+    </ul>
+
+{% endblock  %}
