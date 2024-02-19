@@ -7,6 +7,9 @@ class EmployerProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     #Personal Data
     company_name = models.CharField(max_length=100, default='None')
+    company_description = models.TextField(default='None')
+    phone = models.CharField(max_length=100, default='None')
+    
     #Address Fields
     state = models.CharField(max_length=255, default='None')
     municipality = models.CharField(max_length=255, default='None')

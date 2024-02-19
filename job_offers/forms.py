@@ -11,8 +11,7 @@ class JobOfferDataForm(forms.ModelForm):
             'description',
             'state',
             'municipality',
-            'job_type', 
-            'salary',
+            'job_type',
             ]
 
     def __init__(self, *args, **kwargs):

@@ -8,6 +8,11 @@ class ApplicantProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     #Personal Data
     first_name = models.CharField(max_length=100, default='None')
+    last_names = models.CharField(max_length=100, default='None')
+    title = models.CharField(max_length=255, default='None')
+    industry = models.CharField(max_length=255, default='None')
+    school = models.CharField(max_length=100, default='None')
+    phone = models.CharField(max_length=100, default='None')
 
     #Address Fields
     state = models.CharField(max_length=255, default='None')
