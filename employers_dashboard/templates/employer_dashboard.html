@@ -2,11 +2,23 @@
 {% load static %}
 {% block content %}
   <h2>Tus Ofertas de Trabajo</h2>
-  <ul>
-    {% for job_offer in job_offers %}
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">{{ job_offer.job_title }}</a>
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="list-group">
+        {% for job_offer in job_offers %}
+          <a href="{% url 'job_applications' request.user.id job_offer.id %}" class="list-group-item list-group-item-action">{{ job_offer.job_title }}</a>
+        {% endfor %}
+      </ul>
     </div>
-    {% endfor %}
-  </ul>
+
+  {% if applications %}
+    <div class="col-md-6">
+      <ul class="list-group">
+        {% for application in applications %}
+            <a href="#" class="list-group-item list-group-item-action">{{ application.candidate }}</a>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  </div>
 {% endblock %}

@@ -24,3 +24,9 @@ ul {
     /* Agrega estilos adicionales según sea necesario para los elementos de la lista */
     /* Por ejemplo, puedes establecer colores, márgenes, padding, etc. */
 }
+
+/* LISTA DE APLICACIONES */
+.list-group-applications {
+    width: 50%; /* Establece el ancho al 25% de la plantilla */
+    float: right; /* Hace que el elemento flote a la derecha */
+}
