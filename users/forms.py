@@ -25,7 +25,19 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirma la Contraseña'
         self.fields['password2'].label = ''
-        self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Confirma la contraseña.</small></span>'
+        self.fields['password2'].help_text = '<span class="form-text text-muted"><small></small></span>'
+
+        self.fields['is_applicant'].label = ''
+        
+        self.fields['is_applicant'].widget = forms.TextInput(attrs={
+            'style': 'display: none;',
+        })
+
+        self.fields['is_employer'].label = ''
+        
+        self.fields['is_employer'].widget = forms.TextInput(attrs={
+            'style': 'display: none;',
+        })
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

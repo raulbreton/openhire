@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from users.views import register_user, login_user, logout_user
+from users.views import register_user, login_user, logout_user, register_account_type
 from employers.views import employers_home, employer_profile
 from applicants.views import applicants_home, applicant_profile, applicant_filter, search_job_offers
 from job_offers.views import job_offer_data_view, select_boolean_fields
@@ -12,6 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #USERS
     path('register/', register_user, name='register'),
+    path('register_account_type/', register_account_type, name='register_account_type'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     #EMPLOYERS

@@ -18,38 +18,73 @@ def register_user(request):
             # Extract cleaned data from the form
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            is_employer = form.cleaned_data['is_employer']
-            is_applicant = form.cleaned_data['is_applicant']
-            
-            # Check if both employer and applicant checkboxes are selected
-            if is_employer and is_applicant:
-                # If both are selected, render the registration form again with an error message
-                return render(request, "register.html", {'form': form})
 
-            # Save the form data and potentially perform a redirect
-            form.save()
+            request.session['email'] = request.POST['email']
+            request.session['password1'] = request.POST['password1']
 
-            # Authenticate the user based on the provided credentials
-            user = authenticate(username=email, password=password)
-            
-            # Log in the user
-            login(request, user)
-
-            # Check if the user is an employer
-            if is_employer:
-                # Redirect to Employers Home Page
-                return redirect('employers-home')
-            
-            # Check if the user is an applicant
-            elif is_applicant:
-                # Redirect to Applicants Home Page
-                return redirect('applicants-home')
+            # Redirect to register_account_type
+            return redirect('register_account_type')
         else:
             # If the form is not valid, render the registration form again with validation errors
             return render(request, "register.html", {'form': form})
 
     # Render the registration form (GET request or after successful submission)
     return render(request, "register.html", {'form': form})
+
+def register_account_type(request):
+    email = request.session.get('email')
+    password = request.session.get('password1')
+
+    if request.method == 'POST':
+        account_type = request.POST.get('account_type')
+
+        if account_type == 'applicant':
+            # Ingresar Datos al Formulario
+            form_data = {
+                'email': email,
+                'password1': password,
+                'password2': password,
+                'is_applicant': True,
+                'is_employer': False,
+            }
+            
+            form = SignUpForm(form_data)
+            #Guardar los datos del formulario.
+            if form.is_valid(): 
+                form.save()
+            
+             # Authenticate the user based on the provided credentials
+            user = authenticate(username=email, password=password)
+            
+            # Log in the user
+            login(request, user)
+
+            return redirect('applicants-home')
+        
+        elif account_type == 'employer':
+            # Ingresar Datos al Formulario
+            form_data = {
+                'email': email,
+                'password1': password,
+                'password2': password,
+                'is_applicant': False,
+                'is_employer': True,
+            }
+            
+            form = SignUpForm(form_data)
+            #Guardar los datos del formulario.
+            if form.is_valid(): 
+                form.save()
+            
+             # Authenticate the user based on the provided credentials
+            user = authenticate(username=email, password=password)
+            
+            # Log in the user
+            login(request, user)
+                
+            return redirect('employers-home')
+
+    return render(request, "register_account_type.html")
 
 def logout_user(request):
     # Retrieve the currently logged-in user from the request
