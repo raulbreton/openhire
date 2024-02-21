@@ -7,21 +7,22 @@ from django.db.models.signals import post_save
 class ApplicantProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     #Personal Data
-    first_name = models.CharField(max_length=100, default='None')
-    last_names = models.CharField(max_length=100, default='None')
-    title = models.CharField(max_length=255, default='None')
-    industry = models.CharField(max_length=255, default='None')
-    school = models.CharField(max_length=100, default='None')
-    phone = models.CharField(max_length=100, default='None')
+    first_name = models.CharField(max_length=100, null=False)
+    last_names = models.CharField(max_length=100, null=False)
+    title = models.CharField(max_length=255, null=True)
+    industry = models.CharField(max_length=255, null=True)
+    school = models.CharField(max_length=100, null=True)
+    phone = models.CharField(max_length=100, null=True)
 
     #Address Fields
-    state = models.CharField(max_length=255, default='None')
-    municipality = models.CharField(max_length=255, default='None')
-    postal_code = models.CharField(max_length=10, default='None')
-    neighborhood = models.CharField(max_length=100, default='None')
-    street_address = models.CharField(max_length=255, default='None')
-    exterior_number = models.CharField(max_length=10, default='None')
-    interior_number = models.CharField(max_length=10, blank=True, null=True, default='None')
+    state = models.CharField(max_length=255, null=False)
+    city = models.CharField(max_length=255, null=False)
+    municipality = models.CharField(max_length=255, null=True)
+    postal_code = models.CharField(max_length=10, null=True)
+    neighborhood = models.CharField(max_length=100, null=True)
+    street_address = models.CharField(max_length=255, null=True)
+    exterior_number = models.CharField(max_length=10, null=True)
+    interior_number = models.CharField(max_length=10, null=True)
 
     # Extremidades superiores
     brazo_izquierdo = models.BooleanField(default=False)

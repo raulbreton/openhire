@@ -1,21 +1,25 @@
 {% extends "applicants-base.html" %}
+{% load static %}
 {% block content %}
 <head>
     <title>Applicant Profile Form</title>
+    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
 </head>
 
 <body>
 
-  <h2>Applicant Profile Form</h2>
+  <div class = "container">
+    <h2>Información de contacto</h2>
 
-  <!-- Personal_Data Form -->
-  <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}">
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <button type="submit">Guardar Cambios</button>
-  </form>
+    <!-- Personal_Data Form -->
+    <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-outline-primary">Siguiente</button>
+      </div>
+    </form>
+  </div>
 
 </body>
 {% endblock  %}

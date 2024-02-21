@@ -19,7 +19,7 @@ def applicant_profile(request, pk):
         if form.is_valid():
             form.save()
             #Succes!
-            return redirect('applicant-profile', pk=pk)
+            return redirect('applicant-filter', pk=pk)
     else:
         # If it's a GET request, display the form with the existing data
         form = ApplicantProfileForm(instance=applicant_profile)
@@ -52,7 +52,7 @@ def applicant_filter(request, pk):
         'applicant_profile': applicant_profile,
     }
 
-    return render(request, 'applicant-filter.html', context)
+    return render(request, 'applicants-home.html', context)
 
 def search_job_offers(request):
     job_title_query = request.GET.get('job_title', '')
