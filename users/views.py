@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import CustomUser
 
 def register_user(request):
     # Initialize an instance of the SignUpForm
@@ -59,7 +60,12 @@ def register_account_type(request):
             # Log in the user
             login(request, user)
 
-            return redirect('applicants-home')
+            # Use filter to get the ApplicantProfile based on the email
+            pk = CustomUser.objects.filter(email=email).values('id')[0]['id']
+            
+            # Complementar la URL de redireccionamiento con el 'profile_id'
+            redirect_url = f'/applicant-profile/{pk}/'
+            return redirect(redirect_url)
         
         elif account_type == 'employer':
             # Ingresar Datos al Formulario
@@ -82,7 +88,12 @@ def register_account_type(request):
             # Log in the user
             login(request, user)
                 
-            return redirect('employers-home')
+            # Use filter to get the ApplicantProfile based on the email
+            pk = CustomUser.objects.filter(email=email).values('id')[0]['id']
+            
+            # Complementar la URL de redireccionamiento con el 'profile_id'
+            redirect_url = f'/employer-profile/{pk}/'
+            return redirect(redirect_url)
 
     return render(request, "register_account_type.html")
 

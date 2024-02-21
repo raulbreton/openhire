@@ -20,7 +20,7 @@ class SignUpForm(UserCreationForm):
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'Contraseña'
         self.fields['password1'].label = ''
-        self.fields['password1'].help_text = '<ul class="form-text text-muted small"><li>Tu contraseña no puede ser demasiado similar a tu otra información personal.</li><li>Tu contraseña debe contener al menos 8 caracteres.</li><li>Tu contraseña no puede ser una contraseña comúnmente utilizada.</li><li>Tu contraseña no puede ser completamente numérica.</li></ul>'
+        self.fields['password1'].help_text = '<p class="form-text text-muted" style="margin-top: 0%;"><small>Tu contraseña debe contener al menos 8 caracteres.</small></p>'
 
         self.fields['password2'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirma la Contraseña'
