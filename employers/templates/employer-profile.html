@@ -1,21 +1,25 @@
 {% extends "employers-base.html" %}
+{% load static %}
 {% block content %}
 <head>
     <title>Employer Profile Form</title>
+    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
 </head>
 
 <body>
+  <div class = "container">
+    <h2>Información de contacto</h2>
 
-  <h2>Employer Profile Form</h2>
-
-  <!-- Personal_Data Form -->
-  <form method="post" enctype="multipart/form-data" action="{% url 'employer-profile' request.user.id %}">
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <button type="submit">Guardar Cambios</button>
-  </form>
+    <!-- Personal_Data Form -->
+    <form method="post" enctype="multipart/form-data" action="{% url 'employer-profile' request.user.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      
+      <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-outline-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
 
 </body>
 {% endblock  %}

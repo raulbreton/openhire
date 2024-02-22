@@ -17,7 +17,7 @@ def employer_profile(request, pk):
         if form.is_valid():
             form.save()
             #Succes!
-            return redirect('employer-profile', pk=pk)
+            return render(request, "employers-home.html")
     else:
         # If it's a GET request, display the form with the existing data
         form = EmployerProfileForm(instance=employer_profile)

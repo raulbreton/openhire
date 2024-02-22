@@ -6,19 +6,21 @@ from users.models import CustomUser
 class EmployerProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     #Personal Data
-    company_name = models.CharField(max_length=100, default='None')
-    company_description = models.TextField(default='None')
-    phone = models.CharField(max_length=100, default='None')
-    
+    company_name = models.CharField(max_length=100, null=True)
+    company_description = models.TextField(null=True)
+    phone = models.CharField(max_length=100, null=True)
+    industry = models.CharField(max_length=255, null=True)
+
     #Address Fields
-    state = models.CharField(max_length=255, default='None')
-    municipality = models.CharField(max_length=255, default='None')
-    postal_code = models.CharField(max_length=10, default='None')
-    neighborhood = models.CharField(max_length=100, default='None')
-    street_address = models.CharField(max_length=255, default='None')
-    exterior_number = models.CharField(max_length=10, default='None')
-    interior_number = models.CharField(max_length=10, blank=True, null=True, default='None')
-    
+    state = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    municipality = models.CharField(max_length=255, null=True)
+    postal_code = models.CharField(max_length=10, null=True)
+    neighborhood = models.CharField(max_length=100, null=True)
+    street_address = models.CharField(max_length=255, null=True)
+    exterior_number = models.CharField(max_length=10, null=True)
+    interior_number = models.CharField(max_length=10, null=True)
+
     def __str__(self):
         return self.user.email
 

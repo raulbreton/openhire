@@ -17,7 +17,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     #EMPLOYERS
     path('employers-home', employers_home, name='employers-home'),
-    path('employer-profile/<int:pk>', employer_profile, name="employer-profile"),
+    path('employer-profile/<int:pk>/', employer_profile, name="employer-profile"),
     #APPLICANTS
     path('applicants-home', applicants_home, name='applicants-home'),
     path('applicant-profile/<int:pk>/', applicant_profile, name='applicant-profile'),
