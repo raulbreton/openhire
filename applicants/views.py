@@ -52,7 +52,7 @@ def applicant_filter(request, pk):
         'applicant_profile': applicant_profile,
     }
 
-    return render(request, 'applicants-home.html', context)
+    return render(request, 'applicant-filter.html', context)
 
 def search_job_offers(request):
     job_title_query = request.GET.get('job_title', '')
