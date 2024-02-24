@@ -12,9 +12,58 @@
     <h2>Información de contacto</h2>
 
     <!-- Personal_Data Form -->
-    <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}">
+    <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}" class="row g-3">
       {% csrf_token %}
-      {{ form.as_p }}
+      <div class="col-md-6">
+        <label for="input_first_name" class="form-label">Nombre *</label>
+        {{form.first_name}}
+      </div>
+      <div class="col-md-6">
+        <label for="input_last_names" class="form-label">Apellidos *</label>
+        {{form.last_names}}
+      </div>
+      <div class="col-md-12">
+        <label for="input_title" class="form-label">Título de Profesión</label>
+        {{form.title}}
+      </div>
+      <div class="col-md-6">
+        <label for="input_industry" class="form-label">Industria</label>
+        {{form.industry}}
+      </div>
+      <div class="col-md-6">
+        <label for="input_phone" class="form-label">Telefono Móvil</label>
+          <div class="input-group">
+              <span class="input-group-text">+521</span> {{ form.phone}}
+          </div>
+      </div>
+      <div class="col-md-4">
+        <label for="input_street_address" class="form-label">Calle</label>
+        {{form.street_address}}
+      </div>
+      <div class="col-md-4">
+        <label for="input_neighborhood" class="form-label">Colonia</label>
+        {{form.neighborhood}}
+      </div>
+      <div class="col-md-2">
+        <label for="input_exterior_number" class="form-label">Exterior</label>
+        {{form.exterior_number}}
+      </div>
+      <div class="col-md-2">
+        <label for="input_interior_number" class="form-label">Interior</label>
+        {{form.interior_number}}
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">Ciudad *</label>
+        {{form.city}}
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">Estado *</label>
+        {{form.state}}
+      </div>
+      <div class="col-md-2">
+        <label for="inputZip" class="form-label">C.P</label>
+        {{form.postal_code}}
+      </div>
       <div class="d-grid gap-2">
           <button type="submit" class="btn btn-outline-primary">Siguiente</button>
       </div>

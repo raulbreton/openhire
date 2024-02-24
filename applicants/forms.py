@@ -26,29 +26,15 @@ class ApplicantProfileForm(forms.ModelForm):
 
         #Custom Fields
         for field in self.fields:
-                self.fields[field].widget.attrs.update({'class':'form-control'})
+                if field != 'state':
+                    self.fields[field].widget.attrs.update({'class':'form-control'})
+                else:
+                    self.fields[field].widget.attrs.update({'class':'form-select'})
 
                 if field == 'first_name' or field == 'last_names' or field == 'state' or field == 'city':
                     self.fields[field].required = True
                 else:
                     self.fields[field].required = False
-
-        #Hard-Coded Labels
-        self.fields['first_name'].label = 'Nombre *'
-        self.fields['last_names'].label = 'Apellidos *'
-        self.fields['title'].label = 'Título'
-        self.fields['industry'].label = 'Industria'
-        self.fields['school'].label = 'Educación'
-        self.fields['phone'].label = 'Teléfono'
-        self.fields['phone'].help_text = '<div style="border-top: 1px solid black; margin-top: 50px;"><h3 style="margin-top: 30px;">Ubicación</h3><p style="color: rgb(134, 133, 133);">Esto permite mostrarte ofertas de empleo cercanas a tu ubicación.</p>'
-        self.fields['state'].label = 'Estado *'
-        self.fields['city'].label = 'Ciudad *'
-        self.fields['municipality'].label = 'Municipio'
-        self.fields['postal_code'].label = 'Codigo Postal'
-        self.fields['neighborhood'].label = 'Colonia'
-        self.fields['street_address'].label = 'Calle'
-        self.fields['exterior_number'].label = 'Num. Exterior'
-        self.fields['interior_number'].label = 'Num. Interior'
 
 class ApplicantFilterForm(forms.ModelForm):
     class Meta:
