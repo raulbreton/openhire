@@ -2,6 +2,48 @@ from django import forms
 from .models import JobOffer
 from django.core.exceptions import ValidationError
 
+class JobOfferForm(forms.ModelForm):
+    class Meta:
+        model = JobOffer
+        fields = [
+            'job_title', 
+            'company_name',
+            'description',
+            'state',
+            'city',
+            'job_type',
+            'min_salary',
+            'max_salary',
+            'brazo_izquierdo', 
+            'brazo_derecho', 
+            'mano_izquierda', 
+            'mano_derecha',
+            'pierna_izquierda', 
+            'pierna_derecha', 
+            'pie_izquierdo', 
+            'pie_derecho',
+            'espalda', 
+            'cuello', 
+            'vista', 
+            'oido', 
+            'tacto',
+            'sistema_respiratorio', 
+            'sistema_cardiovascular', 
+            'sistema_neurologico', 
+            'sistema_neurologico_sistema_nervioso_periferico',
+            ]
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        #Custom Fields
+        for field in self.fields:
+            if self.fields[field].__class__ != forms.BooleanField:
+                if field == 'state' or field == 'job_type':
+                    self.fields[field].widget.attrs.update({'class':'form-select'})
+                else:
+                    self.fields[field].widget.attrs.update({'class':'form-control'})
+        
+
 class JobOfferDataForm(forms.ModelForm):
     class Meta:
         model = JobOffer
@@ -10,13 +52,50 @@ class JobOfferDataForm(forms.ModelForm):
             'company_name',
             'description',
             'state',
-            'municipality',
+            'city',
             'job_type',
+            'min_salary',
+            'max_salary',
             ]
+        
+    def clean(self):
+        cleaned_data = super().clean()
+        min_salary = cleaned_data.get('min_salary')
+        max_salary = cleaned_data.get('max_salary')
+
+        if min_salary is not None and max_salary is not None and min_salary > max_salary:
+            raise forms.ValidationError("El salario mínimo no puede ser mayor que el salario máximo.")
+        elif min_salary == 0 and max_salary == 0:
+            raise forms.ValidationError("Porfavor ingresa una cifra.")
+        elif min_salary < 0 and max_salary < 0:
+            raise forms.ValidationError("La cifra no puede ser menor a cero.")
+
+        return cleaned_data
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Personaliza el formulario según tus necesidades, si es necesario.
+        #Custom Fields
+        for field in self.fields:
+            if field == 'job_type' or field == 'state':
+                self.fields[field].widget.attrs.update({'class':'form-select'})
+                self.fields[field].required = True
+            else:
+                self.fields[field].widget.attrs.update({'class':'form-control'})
+                self.fields[field].required = True
+
+        #Hard-Coded Labels
+        self.fields['job_title'].label = 'Titulo del Empleo *'
+        self.fields['description'].label = 'Descripción del Empleo *'
+        self.fields['state'].label = 'Estado *'
+        self.fields['city'].label = 'Ciudad *'
+        self.fields['min_salary'].label = 'Minimo *'
+        self.fields['max_salary'].label = 'Maximo *'
+
+        self.fields['company_name'].label = ''
+        self.fields['company_name'].widget = forms.TextInput(attrs={
+            'style': 'display: none;',
+        })
 
 class BooleanFieldsForm(forms.ModelForm):
     class Meta:
@@ -40,6 +119,10 @@ class BooleanFieldsForm(forms.ModelForm):
             'sistema_neurologico', 
             'sistema_neurologico_sistema_nervioso_periferico',
             ]
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        #Custom Fields
 
     def clean(self):
         cleaned_data = super().clean()

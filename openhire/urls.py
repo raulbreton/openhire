@@ -26,7 +26,7 @@ urlpatterns = [
     #JOB OFFER
     path('create-job_offer', job_offer_data_view, name='create-job_offer'),
     path('job_offer-inclusive-fields', select_boolean_fields, name='job_offer-inclusive-fields'),
-    #JOB OFFER
+    #JOB APPLICATIONS
     path('job/<int:job_offer_id>/apply/', apply_for_job, name='apply_for_job'),
     #EMPLOYERS DASHBOARD
     path('employers-dashboard/<int:pk>/', job_offers, name='employer-dashboard'),

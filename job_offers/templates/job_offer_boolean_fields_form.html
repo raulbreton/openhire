@@ -6,14 +6,21 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav class="navbar bg-dark border-bottom border-body justify-content-center" data-bs-theme="dark">
+        <a class="navbar-brand" href="{% url 'employers-home' %}">
+            <img src="{% static 'logo.png' %}"alt="Logo" width="50" height="40">
+        </a>
+    </nav>
+    
+    <div class="container">
     <form method="post" enctype="multipart/form-data" action="#">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Concluir</button>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-outline-primary">Siguiente</button>
+        </div>
     </form>
-    <script>
-    console.log("{{ combined_data }}");
-</script>
-
+    </div>
 </body>
 {% endblock %}

@@ -3,29 +3,85 @@
 {% block content %}
 <head>
     <title>Job Offer Template</title>
+    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
+    <!-- Make Decimal Fields Arrows dissapear -->
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+               -webkit-appearance: none;
+                margin: 0;
+        }
+ 
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
+        <nav class="navbar bg-dark border-bottom border-body justify-content-center" data-bs-theme="dark">
             <a class="navbar-brand" href="{% url 'employers-home' %}">
-            <img src="{% static 'home_icon.ico' %}"alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            OpenHire
+                <img src="{% static 'logo.png' %}"alt="Logo" width="50" height="40">
             </a>
-        </div>
-    </nav>
-
-  <h2>Job Offer Template {{company_name}}</h2>
+        </nav>
 
     <!-- Personal_Data Form -->
-    <form method="post" enctype="multipart/form-data" action="#">
-        {% csrf_token %}
+    <div class="container">
+        <h2 style="margin-top: 0px;">Detalles del trabajo</h2>
+        <form method="post" enctype="multipart/form-data" action="#" class="row g-3">
+            {% csrf_token %}
 
-        {{ form.as_p }}
+            <div class="col-mb-3">
+            <label for="inputCity" class="form-label">Titulo del Empleo</label>
+                {{ form.job_title }}
+            </div>
 
-        <button type="submit">Siguiente</button>
-    </form>
+            {{ form.company_name }}
 
+            <div class="col-mb-3">
+            <label for="inputCity" class="form-label">Descripción del Empleo</label>
+                {{ form.description }}
+            </div>
+            
+            <div class="col-md-6">
+            <label for="inputCity" class="form-label">Ciudad</label>
+                {{ form.city }}
+            </div>
+
+            <div class="col-md-6">
+            <label for="inputCity" class="form-label">Estado</label>
+                {{ form.state }}
+            </div>
+
+            <div class="col-mb-3">
+                <label for="inputCity" class="form-label">Tipo de Empleo</label>
+                {{ form.job_type }}
+            </div>
+
+            <div class="col-mb-3">
+                <label for="inputCity" class="form-label">Salario</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="inputCity" class="form-label" style="font-size:14px; margin-bottom: 0px;">Minimo</label>
+                                <div class="input-group" style="margin-bottom: 20px;">
+                                    <span class="input-group-text">$</span> {{ form.min_salary}}
+                                </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="inputCity" class="form-label" style="font-size:14px; margin-bottom: 0px;">Maximo</label>
+                                <div class="input-group" style="margin-bottom: 20px;">
+                                    <span class="input-group-text">$</span> {{ form.max_salary}}
+                                </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-outline-primary">Siguiente</button>
+            </div>
+        </form>
+    </div>
 </body>
 {% endblock  %}
