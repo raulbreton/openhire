@@ -3,6 +3,9 @@ from .forms import JobApplicationForm
 from job_offers.models import JobOffer
 
 def apply_for_job(request, job_offer_id):
+    if not request.user.is_authenticated or not request.user.is_applicant:
+        return redirect('login')  # Redirect to login if the user is not an employer
+    
     job_offer = JobOffer.objects.get(pk=job_offer_id)
     if request.method == 'POST':
         form = JobApplicationForm(request.POST, request.FILES)

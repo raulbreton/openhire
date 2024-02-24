@@ -10,6 +10,9 @@ class JobApplicationForm(forms.ModelForm):
         super(JobApplicationForm, self).__init__(*args, **kwargs)
         
         self.fields['cover_letter'].widget = forms.Textarea(attrs={'rows': 5})
+        self.fields['cover_letter'].widget.attrs.update({'class':'form-control'})
+        
         self.fields['resume'].widget.attrs['accept'] = 'application/pdf' #PDF's Only Code Line
-
-    # You can add additional validation methods if necessary
+        self.fields['resume'].required = True
+        self.fields['resume'].help_text = "<p style = 'color: gray; margin-top: 0px;'>Solo se aceptan documentos en PDF</p>"
+        self.fields['resume'].widget.attrs.update({'class':'form-control'})
