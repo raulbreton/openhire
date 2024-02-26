@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import JobApplicationForm
 from job_offers.models import JobOffer
+from django.db import IntegrityError
 
 def apply_for_job(request, job_offer_id):
     if not request.user.is_authenticated or not request.user.is_applicant:
@@ -10,13 +11,17 @@ def apply_for_job(request, job_offer_id):
     if request.method == 'POST':
         form = JobApplicationForm(request.POST, request.FILES)
         if form.is_valid():
-            # Save the application to the database
-            application = form.save(commit=False)
-            application.candidate = request.user.applicantprofile
-            application.job_offer = job_offer
-            application.save()
-            # Redirect to the home page
-            return redirect('applicants-home')
+            form.clean()
+            try:
+                # Save the application to the database
+                application = form.save(commit=False)
+                application.candidate = request.user.applicantprofile
+                application.job_offer = job_offer
+                application.save()
+                # Redirect to the home page
+                return redirect('applicants-home')
+            except IntegrityError:
+                form.add_error(None, "Ya aplicaste para este trabajo")
     else:
         form = JobApplicationForm()
 

@@ -5,17 +5,21 @@
   <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
 </head>
 
-<div class = "container">
-  <h2 style="margin-top: 0px; margin-bottom: 0px;">Crear Postulación</h2>
-  <p style="color: gray;"> Tus datos de Perfil y del Filtro Inclusivo se incluirán automáticamente a la aplicación.</p>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    {{ form.as_p }}
-    
-    <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-primary">Postularse</button>
-    </div>
-  </form>
-</div>
+<body>
+  <div class = "container">
+    <h2 style="margin-top: 0px; margin-bottom: 0px;">Crear Postulación</h2>
+    <p style="color: gray;"> Tus datos de Perfil y del Filtro Inclusivo se incluirán automáticamente a la aplicación.</p>
+    <h4>Experiencia Reciente</h4>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      {{ form.as_p }}
+      
+      <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-outline-primary">Postularse</button>
+      </div>
+    </form>
+  </div>
+</body>
 {% endblock  %}

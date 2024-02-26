@@ -21,5 +21,8 @@ class JobApplication(models.Model):
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Enviado')
 
+    class Meta:
+        unique_together = ('candidate', 'job_offer')
+
     def __str__(self):
         return f"{self.candidate.user.email} - {self.job_offer.job_title}"
