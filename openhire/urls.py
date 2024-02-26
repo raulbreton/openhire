@@ -30,8 +30,7 @@ urlpatterns = [
     path('job/<int:job_offer_id>/apply/', apply_for_job, name='apply_for_job'),
     #EMPLOYERS DASHBOARD
     path('employers-dashboard/<int:pk>/', job_offers, name='employer-dashboard'),
-    path('job_applications/<int:pk>/<int:job_offer_id>/', job_applications, name='job_applications'),
-    path('job_applications/<int:pk>/<int:job_offer_id>/<int:application_id>/', application_details, name='application_details'),
+    path('job_applications/<int:job_offer_id>/', job_applications, name='job_applications'),
     #APPLICANTS DASHBOARD
     path('applicants-dashboard/<int:pk>/', applicant_dashboard, name='applicant-dashboard'),
 ]

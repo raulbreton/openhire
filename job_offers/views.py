@@ -4,7 +4,7 @@ from .models import JobOffer
 from employers.models import EmployerProfile
 
 def job_offer_data_view(request):
-    if not request.user.is_authenticated or not request.user.is_applicant:
+    if not request.user.is_authenticated or not request.user.is_employer:
         return redirect('login')  # Redirect to login if the user is not an employer
     
     if request.method == 'POST':

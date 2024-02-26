@@ -11,9 +11,9 @@ class JobApplication(models.Model):
 
     STATUS_CHOICES = [
         ('Enviado', 'Enviado'),
+        ('Interesado', 'Interesado'),
         ('En Revisión', 'En Revisión'),
-        ('Aceptado', 'Aceptado'),
-        ('Rechazado', 'Rechazado'),
+        ('No Interesado', 'No Interesado'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Enviado')
 

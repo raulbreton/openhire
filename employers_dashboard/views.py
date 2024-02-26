@@ -6,6 +6,9 @@ from job_applications.models import JobApplication
 
 @login_required
 def job_offers(request, pk):
+    if not request.user.is_authenticated or not request.user.is_employer:
+        return redirect('login')  # Redirect to login if the user is not an employer
+    
     # Obtener Datos
     employer_profile = EmployerProfile.objects.get(user_id=pk)
     job_offers = JobOffer.objects.filter(employer_profile=employer_profile)
@@ -16,17 +19,14 @@ def job_offers(request, pk):
 
     return render(request, 'employer_dashboard.html', context)
 
-def job_applications(request, pk, job_offer_id):
-    employer_profile = EmployerProfile.objects.get(user_id=pk)
-    job_offers = JobOffer.objects.filter(employer_profile=employer_profile)
+def job_applications(request, job_offer_id):
     applications = JobApplication.objects.filter(job_offer_id=job_offer_id)
 
-    context = {
-        'job_offers': job_offers,
-        'applications': applications,
-    }
+    if not applications:
+        message = "No hay aplicaciones para esta oferta de trabajo en este momento."
+        return render(request, 'no_applications.html', {'message': message})
 
-    return render(request, 'employer_dashboard.html', context)
+    return render(request, 'job_applicants.html', {'applications': applications})
 
 def application_details(request, pk, job_offer_id, application_id):
     employer_profile = EmployerProfile.objects.get(user_id=pk)
