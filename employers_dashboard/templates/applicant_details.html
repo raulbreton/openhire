@@ -1,0 +1,29 @@
+{% extends 'base-employer_dashboard.html' %}
+{% load static %}
+{% block content %}
+  <body>
+
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'application_details' application.id %}">
+            <img style="margin-bottom: 5px;"src="{% static 'back_arrow.ico' %}"alt="Logo" width="30" height="30">
+            <a class="navbar-brand" href="{% url 'employers-home' %}">
+                <img style="margin-bottom: 5px;"src="{% static 'home_icon.ico' %}"alt="Logo" width="40" height="40">
+            </a>
+            </a>
+            <h1 style="float:right;" class="display-6">Aplicantes</h1>
+        </div>
+    </nav>
+
+    <div class="container d-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{application.candidate.first_name}} {{application.candidate.last_names}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{application.candidate.title}}</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        </div>
+    </div>
+
+  </body>
+{% endblock %}

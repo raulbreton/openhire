@@ -1,43 +1,55 @@
 {% extends 'base-employer_dashboard.html' %}
 {% load static %}
 {% block content %}
-<body style="background-color: rgb(235, 234, 234);">
+<body>
 
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:40px; margin-top:20px;">
-    <h4 style="">Ofertas de Trabajo</h4>
-    <a href="{% url 'create-job_offer' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Crear Oferta</a>
-  </div>
+  <nav class="navbar bg-body-tertiary">
+
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="{% url 'employer-dashboard' request.user.id %}">
+        <img style="margin-bottom: 5px;"src="{% static 'back_arrow.ico' %}"alt="Logo" width="30" height="30">
+      </a>
+
+      <h1 style="float:right;" class="display-6">Ofertas</h1>
+
+    </div>
+
+  </nav>
 
   {% if applications %}
-    <div class="list-group" style="margin-left:15px; margin-right:15px;">
-    <div class="list-group-item list-group-item" aria-current="true">
-      <div class="row">
-        <div class="col"><strong>Nombre</strong></div>
-        <div class="col"><strong>Status</strong></div>
-        <div class="col"><strong>Experiencia Reciente</strong></div>
-        <div class="col"><strong>Interesado?</strong></div>
-      </div>
-    </div>
+    <div class="list-group"  style="margin-left:15px; margin-right:15px;">
+
       {% for application in applications %}
-        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-        <div class="row">
-            <div class="col align-self-center"><strong>{{application.candidate.first_name}} {{application.candidate.last_names}}</strong></div>
-            <div class="col">
-                <div class="fw">{{application.status}}</div>
-                <small style="color:gray;">Applied: {{application.application_date|date:"d-m-Y"}}</small>
-            </div>
-            <div class="col">Columna 3</div>
-            <div class="col align-self-center">
-                <button type="button" class="btn btn-outline-success">✓</button>
-                <button type="button" class="btn btn-outline-primary">?</button>
-                <button type="button" class="btn btn-outline-danger">X</button>
-            </div>
-        </div>
+        <a href="{% url 'application_details' application.id %}" class="list-group-item list-group-item-action" aria-current="true" style="background-color: rgb(235, 234, 234);">
+          
+          <div class="d-flex w-100 justify-content-between">
+            
+            <h5 class="display-5" style="font-size: 26px;">
+              {{application.candidate.first_name}} {{application.candidate.last_names}}
+              <p class="lead" style="font-size: 18px; color: gray;">
+                {{application.candidate.title}}
+              </p>
+            </h5>
+
+            <p class="lead" style="float: right; font-size: 16px;">
+              {% if application.status == 'Enviado' %}
+                  {{ application.application_date|date:"d/m/Y" }}<br>No revisado
+              {% else %}
+                {{ application.application_date|date:"d/m/Y" }}<br>{{application.status}}
+              {% endif %}
+            </p>
+
+          </div>
+
         </a>
-      {% endfor %}
+        {% endfor %}
+        
     </div>
   {% else %}
+
     <p>No hay aplicaciones para esta oferta de trabajo en este momento.</p>
+    
   {% endif %}
 
 </body>

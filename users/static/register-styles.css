@@ -8,11 +8,11 @@ p{
 }
 
 body{
-    background-color: rgb(235, 234, 234);
+    background-color: white;
 }
 
 .container{
-    background-color: white;
+    background-color: rgb(235, 234, 234);
     border-radius: 10px;
     margin-top: 10px;
     width: fit-content;

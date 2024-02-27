@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from employers.models import EmployerProfile
 from job_offers.models import JobOffer
 from job_applications.models import JobApplication
+from applicants.models import ApplicantProfile
 
 @login_required
 def job_offers(request, pk):
@@ -28,16 +29,12 @@ def job_applications(request, job_offer_id):
 
     return render(request, 'job_applicants.html', {'applications': applications})
 
-def application_details(request, pk, job_offer_id, application_id):
-    employer_profile = EmployerProfile.objects.get(user_id=pk)
-    job_offers = JobOffer.objects.filter(employer_profile=employer_profile)
-    applications = JobApplication.objects.filter(job_offer_id=job_offer_id)
+def application_details(request, application_id):
     application = JobApplication.objects.get(id=application_id)
 
-    context = {
-        'job_offers':job_offers,
-        'applications':applications,
-        'application':application
-    }
+    return render(request, 'application_detail.html', {'application':application})
 
-    return render(request, 'employer_dashboard.html', context)
+def applicant_details(request, application_id):
+    application = JobApplication.objects.get(id=application_id)
+
+    return render(request, 'applicant_details.html', {'application':application})

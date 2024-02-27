@@ -1,23 +1,45 @@
 {% extends 'base-employer_dashboard.html' %}
 {% load static %}
 {% block content %}
-<body style="background-color: rgb(235, 234, 234);">
+<body>
 
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom:40px; margin-top:10px;">
-    <h4>Ofertas de Trabajo</h4>
-    <a href="{% url 'create-job_offer' %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Crear Oferta</a>
-  </div>
+  <nav class="navbar bg-body-tertiary">
 
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="{% url 'employers-home'%}">
+        <img style="margin-bottom: 5px;"src="{% static 'back_arrow.ico' %}"alt="Logo" width="30" height="30">
+      </a>
+
+      <h1 style="float:right;" class="display-6">Ofertas</h1>
+
+    </div>
+
+  </nav>
+  
     <div class="list-group"  style="margin-left:15px; margin-right:15px;">
+
       {% for job_offer in job_offers %}
-        <a href="{% url 'job_applications' job_offer.id %}" class="list-group-item list-group-item-action" aria-current="true">
+        <a href="{% url 'job_applications' job_offer.id %}" class="list-group-item list-group-item-action" aria-current="true" style="background-color: rgb(235, 234, 234);">
+          
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{job_offer.job_title}}</h5>
+            
+            <h5 class="display-5" style="font-size: 26px;">
+              {{job_offer.job_title}}
+              <p class="lead" style="font-size: 18px; color: gray;">
+                {{job_offer.state}}, {{job_offer.city}}
+              </p>
+            </h5>
+
+            <p class="lead" style="float: right; font-size: 16px;">
+              {{ job_offer.created_at|date:"d/m/Y" }}
+            
+            </p>
           </div>
-          <p class="mb-1">{{job_offer.state}},{{job_offer.city}}</p>
-          <small>{{ job_offer.created_at|date:"d/m/Y" }}</small>
+          
         </a>
         {% endfor %}
+
     </div>
 
 </body>
