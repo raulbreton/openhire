@@ -32,7 +32,7 @@ class JobApplicationForm(forms.ModelForm):
         self.fields['recent_job_company'].label = 'Compañia'
 
         self.fields['cover_letter'].label = 'Carta de Presentación'
-        self.fields['cover_letter'].widget = forms.Textarea(attrs={'rows': 5})
+        self.fields['cover_letter'].widget = forms.Textarea(attrs={'rows': 4})
         self.fields['cover_letter'].widget.attrs.update({'class':'form-control'})
         
         self.fields['resume'].widget.attrs['accept'] = 'application/pdf' #PDF's Only Code Line

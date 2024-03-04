@@ -25,4 +25,4 @@ def apply_for_job(request, job_offer_id):
     else:
         form = JobApplicationForm()
 
-    return render(request, 'job_applications-form-template.html', {'form': form, 'job_offer': job_offer})
+    return render(request, 'job_application.html', {'form': form, 'job_offer': job_offer})
