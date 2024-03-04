@@ -6,7 +6,7 @@ from applicants.views import applicants_home, applicant_profile, search_job_offe
 from job_applications.views import apply_for_job
 from employers_dashboard.views import job_offers, job_applications, application_details, applicant_details
 from applicants_dashboard.views import applicant_dashboard
-from job_offers.views import create_job_offer
+from job_offers.views import create_job_offer, mod_job_offer, delete_job_offer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,8 @@ urlpatterns = [
     path('search/', search_job_offers, name='search_job_offers'),
     #JOB OFFER
     path('create_job_offer/', create_job_offer, name='create_job_offer'),
+    path('mod_job_offer/<int:job_pk>/', mod_job_offer, name='mod_job_offer'),
+    path('delete_job_offer/<int:job_pk>/', delete_job_offer, name='delete_job_offer'),
     #JOB APPLICATIONS
     path('job/<int:job_offer_id>/apply/', apply_for_job, name='apply_for_job'),
     #EMPLOYERS DASHBOARD
