@@ -1,4 +1,4 @@
-{% extends "applicants-base.html" %}
+{% extends "employers-base.html" %}
 {% load static %}
 {% block content %}
 <head>
@@ -14,7 +14,7 @@
     <p class="fw-semibold" style="font-size: 24px;">Información de contacto</p>
 
     <!-- Personal_Data Form -->
-    <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}" class="row g-3">
+    <form method="post" enctype="multipart/form-data" action="#" class="row g-3">
       {% csrf_token %}
 
       <div class="col-md-6">

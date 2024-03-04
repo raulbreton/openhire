@@ -72,17 +72,7 @@ class JobOffer(models.Model):
         ('Columna Vertebral', 'Columna Vertebral'),
         ('Tronco', 'Tronco'),
     )
-
-    AFECTACION_CHOICES = (
-        ('Leve', 'Leve'),
-        ('Moderada', 'Moderada'),
-        ('Grave', 'Grave'),
-    )
-
-    descripcion_fisicaMotora = models.TextField(max_length=250, blank=True)  
     opcion_fisicaMotora = models.CharField(blank=True, choices=PHYSICAL_CHOICES)
-    afectacion_fisicaMotora = models.CharField(blank=True, choices=AFECTACION_CHOICES)  
-    adaptaciones_fisicaMotora = models.TextField(max_length=250, blank=True)  
 
     #Discapacidad Sensorial
     SENSOR_CHOICES = (
@@ -90,11 +80,8 @@ class JobOffer(models.Model):
         ('Manos ', 'Manos '),
         ('Dedos', 'Dedos'),
     )
-
-    descripcion_sensorial = models.TextField(max_length=250, blank=True)  
+    
     opcion_sensorial = models.CharField(blank=True, choices=SENSOR_CHOICES)
-    afectacion_sensorial = models.CharField(blank=True, choices=AFECTACION_CHOICES)  
-    adaptaciones_sensorial = models.TextField(max_length=250, blank=True) 
 
     #Discapacidad Intelectual
     INTELECTUAL_CHOICES = (
@@ -105,10 +92,7 @@ class JobOffer(models.Model):
         ('Aprendizaje Académico', 'Aprendizaje Académico'),
     )
     
-    descripcion_intelectual = models.TextField(max_length=250, blank=True)  
     opcion_intelectual = models.CharField(blank=True, choices=INTELECTUAL_CHOICES)
-    independencia = models.CharField(blank=True, choices=AFECTACION_CHOICES)  
-    adaptaciones_intelectual = models.TextField(max_length=250, blank=True)
 
     #Discapacidad Psiquica
     PHSYCH_CHOICES = (
@@ -117,9 +101,7 @@ class JobOffer(models.Model):
         ('Trastornos de la Personalidad', 'Trastornos de la Personalidad'),
     )
     
-    descripcion_psiquica = models.TextField(max_length=250, blank=True)  
     opcion_psiquica = models.CharField(blank=True, choices=PHSYCH_CHOICES)
-    adaptaciones_psiquica = models.TextField(max_length=250, blank=True) 
 
     def __str__(self):
         return(

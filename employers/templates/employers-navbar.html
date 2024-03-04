@@ -23,7 +23,7 @@
           </li>
           {% if user.is_authenticated and user.is_employer %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Crear Oferta de Empleo</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'create_job_offer' %}">Crear Oferta de Empleo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'employer-dashboard' request.user.id %}">Mi Panel de Ofertas de Empleo</a>

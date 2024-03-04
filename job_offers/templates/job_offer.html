@@ -1,0 +1,111 @@
+{% extends "job_offer-base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Job Offer Template</title>
+    <!-- Make Decimal Fields Arrows dissapear -->
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+               -webkit-appearance: none;
+                margin: 0;
+        }
+ 
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <p class="fw-semibold" style="font-size: 24px;">Información de oferta</p>
+
+    <!-- Personal_Data Form -->
+    <form method="post" enctype="multipart/form-data" action="#" class="row g-3">
+        {% csrf_token %}
+
+        <div class="col-md-4">
+        <label class="form-label">Título del Empleo *</label>
+        {{form.job_title}}
+        </div>
+
+        <div class="col-md-4">
+        <label class="form-label">Nombre de la Compañía</label>
+        {{form.company_name}}
+        </div>
+
+        <div class="col-md-4">
+        <label class="form-label">Tipo</label>
+        {{form.job_type}}
+        </div>
+
+        <div class="col-md-6">
+        <label class="form-label">Ciudad</label>
+        {{form.city}}
+        </div>
+
+        <div class="col-md-6">
+        <label class="form-label">Estado</label>
+        {{form.state}}
+        </div>
+
+        <div class="col-md-6">
+        <label class="form-label">Salario Minimo</label>
+        <div class="input-group" style="margin-bottom: 20px;">
+            <span class="input-group-text">$</span> {{ form.min_salary}}
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <label class="form-label">Salario Maximo</label>
+        <div class="input-group" style="margin-bottom: 20px;">
+            <span class="input-group-text">$</span> {{ form.max_salary}}
+        </div>
+        </div>
+
+        <div class="col-12">
+        <label for="input_first_name" class="form-label">Descripción del Empleo</label>
+        {{form.description}}
+        </div>
+
+        <div class="col-12">
+        <p class="fw-semibold" style="font-size: 18px; margin-bottom:0px">Elige una o más opciones del filtro inclusivo.</p>
+        <p class="fw-light" style="margin-bottom:0px">Ayudanos a elegir minimo una opcion para poder hacer esta oferta inclusiva.</p>
+        </div>
+
+        <div class="col-md-2">
+        <label class="form-label">Condicion Fisica/Motora</label>
+        {{form.opcion_fisicaMotora}}
+        </div>
+
+        <div class="col-md-2">
+        <label class="form-label">Condicion Sensorial</label>
+        {{form.opcion_sensorial}}
+        </div>
+
+        <div class="col-md-4">
+        <label class="form-label">Condicion Intelectual</label>
+        {{form.opcion_intelectual}}
+        </div>
+
+        <div class="col-md-4">
+        <label class="form-label">Condicion Psiquica</label>
+        {{form.opcion_psiquica}}
+        </div>
+
+        <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+        </div>
+
+    </form>
+  </div>
+
+  <!-- Add Bootstrap JS and Popper.js scripts here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+{% endblock  %}
