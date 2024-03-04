@@ -1,26 +1,77 @@
-{% extends "employers-base.html" %}
+{% extends "applicants-base.html" %}
 {% load static %}
 {% block content %}
 <head>
-    <title>Employer Profile Form</title>
+    <title>Applicant Profile Form</title>
     <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class = "container">
-    <h2 style = "margin-bottom: 5px;">Información de contacto</h2>
-    <p style="color: rgb(134, 133, 133); font-size: 14px;">Recuerda que es importante introducir todos tus datos para poder obtener mejores resultados.</p>
+
+  <div class="container">
+    <p class="fw-semibold" style="font-size: 24px;">Información de contacto</p>
 
     <!-- Personal_Data Form -->
-    <form method="post" enctype="multipart/form-data" action="{% url 'employer-profile' request.user.id %}">
+    <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}" class="row g-3">
       {% csrf_token %}
-      {{ form.as_p }}
-      
+
+      <div class="col-md-6">
+        <label class="form-label">Nombre Compañía*</label>
+        {{form.company_name}}
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Industria *</label>
+        {{form.industry}}
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label">Teléfono *</label>
+        {{form.phone}}
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Calle</label>
+        {{form.street_address}}
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Colonia</label>
+        {{form.neighborhood}}
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Ciudad</label>
+        {{form.city}}
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Estado</label>
+        {{form.state}}
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label">C.P</label>
+        {{form.postal_code}}
+      </div>
+
+      <div class="col-12">
+        <label for="input_first_name" class="form-label">Descripción de la Compañía</label>
+        {{form.company_description}}
+      </div>
+
       <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-outline-primary">Guardar</button>
+        <button type="submit" class="btn btn-outline-primary">Guardar</button>
       </div>
     </form>
   </div>
 
+  <!-- Add Bootstrap JS and Popper.js scripts here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
-{% endblock  %}
+{% endblock %}

@@ -12,7 +12,6 @@ body{
 }
 
 .container{
-    background-color: rgb(235, 234, 234);
     border-radius: 10px;
     margin-top: 10px;
     width: fit-content;

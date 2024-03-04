@@ -12,14 +12,44 @@ class EmployerProfile(models.Model):
     industry = models.CharField(max_length=255, null=True)
 
     #Address Fields
-    state = models.CharField(max_length=255, null=True)
+    STATE_CHOICES = (
+        ('Aguascalientes', 'Aguascalientes'),
+        ('Baja California', 'Baja California'),
+        ('Baja California Sur', 'Baja California Sur'),
+        ('Campeche', 'Campeche'),
+        ('Chiapas', 'Chiapas'),
+        ('Chihuahua', 'Chihuahua'),
+        ('Coahuila', 'Coahuila'),
+        ('Colima', 'Colima'),
+        ('Durango', 'Durango'),
+        ('Guanajuato', 'Guanajuato'),
+        ('Guerrero', 'Guerrero'),
+        ('Hidalgo', 'Hidalgo'),
+        ('Jalisco', 'Jalisco'),
+        ('México', 'México'),
+        ('Michoacán', 'Michoacán'),
+        ('Morelos', 'Morelos'),
+        ('Nayarit', 'Nayarit'),
+        ('Nuevo León', 'Nuevo León'),
+        ('Oaxaca', 'Oaxaca'),
+        ('Puebla', 'Puebla'),
+        ('Querétaro', 'Querétaro'),
+        ('Quintana Roo', 'Quintana Roo'),
+        ('San Luis Potosí', 'San Luis Potosí'),
+        ('Sinaloa', 'Sinaloa'),
+        ('Sonora', 'Sonora'),
+        ('Tabasco', 'Tabasco'),
+        ('Tamaulipas', 'Tamaulipas'),
+        ('Tlaxcala', 'Tlaxcala'),
+        ('Veracruz', 'Veracruz'),
+        ('Yucatán', 'Yucatán'),
+        ('Zacatecas', 'Zacatecas'),
+    )
+    state = models.CharField(max_length=255, choices=STATE_CHOICES, null=False, default='Aguascalientes')
     city = models.CharField(max_length=255, null=True)
-    municipality = models.CharField(max_length=255, null=True)
     postal_code = models.CharField(max_length=10, null=True)
     neighborhood = models.CharField(max_length=100, null=True)
     street_address = models.CharField(max_length=255, null=True)
-    exterior_number = models.CharField(max_length=10, null=True)
-    interior_number = models.CharField(max_length=10, null=True)
 
     def __str__(self):
         return self.user.email
