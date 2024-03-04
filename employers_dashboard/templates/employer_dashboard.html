@@ -16,12 +16,10 @@
     </div>
 
   </nav>
-  
-    <div class="accordion accordion-flush"  style="margin-left:15px; margin-right:15px;">
+  {% if job_offers %}
+    <div class="accordion accordion-flush">
 
       {% for job_offer in job_offers %}
-       
-
         <div class="accordion-item">
 
           <h2 class="accordion-header">
@@ -46,6 +44,11 @@
         {% endfor %}
 
     </div>
-
+  {% else %}
+      <div class="col-12">
+          <p class="fw-semibold">Ups! No hay ofertas todavía.</p>
+          <p class="fw-light"> Crea una oferta para comenzar tu busqueda de candidatos.</p>
+      </div>
+  {% endif %}
 </body>
 {% endblock %}

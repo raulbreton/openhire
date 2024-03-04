@@ -34,3 +34,13 @@ def delete_application(request, pk):
     application_instance.delete()
     
     return redirect('applicants-home')
+
+def set_status(request, pk, status):
+    application = get_object_or_404(JobApplication, id=pk)
+
+    # Cambia el campo 'status' de la aplicación a 'Rechazado'
+    application.status = status
+    application.save()
+
+    # Redirige a la página del dashboard del empleador o a donde desees
+    return redirect('employers-home')

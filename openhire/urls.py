@@ -3,7 +3,7 @@ from django.urls import path
 from users.views import register_user, login_user, logout_user, register_account_type
 from employers.views import employers_home, employer_profile
 from applicants.views import applicants_home, applicant_profile, search_job_offers, applicant_filter
-from job_applications.views import apply_for_job, delete_application
+from job_applications.views import apply_for_job, delete_application, set_status
 from employers_dashboard.views import job_offers, job_applications, application_details, applicant_details
 from applicants_dashboard.views import applicant_dashboard
 from job_offers.views import create_job_offer, mod_job_offer, delete_job_offer
@@ -30,6 +30,7 @@ urlpatterns = [
     #JOB APPLICATIONS
     path('apply_for_job/<int:job_offer_id>/', apply_for_job, name='apply_for_job'),
     path('delete_application/<int:pk>/', delete_application, name='delete_application'),
+    path('set_status/<int:pk>/<str:status>/', set_status, name='set_status'),
     #EMPLOYERS DASHBOARD
     path('employers-dashboard/<int:pk>/', job_offers, name='employer-dashboard'),
     path('job_applications/<int:job_offer_id>/', job_applications, name='job_applications'),
