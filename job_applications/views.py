@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import JobApplicationForm
 from job_offers.models import JobOffer
 from django.db import IntegrityError
+from django.shortcuts import get_object_or_404
+from .models import JobApplication
 
 def apply_for_job(request, job_offer_id):
     if not request.user.is_authenticated or not request.user.is_applicant:
@@ -26,3 +28,9 @@ def apply_for_job(request, job_offer_id):
         form = JobApplicationForm()
 
     return render(request, 'job_application.html', {'form': form, 'job_offer': job_offer})
+
+def delete_application(request, pk):
+    application_instance = get_object_or_404(JobApplication, id=pk)
+    application_instance.delete()
+    
+    return redirect('applicants-home')

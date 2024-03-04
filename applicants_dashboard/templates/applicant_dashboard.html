@@ -1,32 +1,40 @@
 {% extends "base-applicants_dashboard.html" %}
 {% block content %}
+<body>
 
-    <ul class="list-group">
-        <h3>Mis Ofertas de Trabajo</h3>
-        
-        <ul class="list-group list-group-horizontal">
-            <li class="list-group-item list-group-item list-group-item-dark">Empleo</li>
-            <li class="list-group-item list-group-item list-group-item-dark">Compañia</li>
-            <li class="list-group-item list-group-item list-group-item-dark">Fecha de Aplicación</li>
-            <li class="list-group-item list-group-item list-group-item-dark">Estado de la Aplicación</li>
-        </ul>
+{% if applications %}
+<div class="accordion accordion-flush">
 
-        {% for application in applications %}
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item">{{ application.job_offer.job_title }}</li>
-                <li class="list-group-item">{{application.job_offer.company_name}}</li>
-                <li class="list-group-item">{{application.application_date}}</li>
-                {% if application.status == 'Rechazado' %}
-                <li class="list-group-item list-group-item list-group-item-danger">{{application.status}}</li>
-                {% elif application.status == 'En Revisión' %}
-                <li class="list-group-item list-group-item list-group-item-warning">{{application.status}}</li>
-                {% elif application.status == 'Aceptado' %}
-                <li class="list-group-item list-group-item list-group-item-success">{{application.status}}</li>
-                {% else %}
-                <li class="list-group-item">{{application.status}}</li>
-                {% endif %}
-            </ul>
-        {% endfor %}
-    </ul>
+    {% for application in applications %}
 
+    <div class="accordion-item">
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <div class="col-12">
+                    <p class="fw-semibold" style="font-size: 18px; margin-bottom:0px">{{application.job_offer.job_title}}, {{application.job_offer.company_name}}</p>
+                    <p class="fw-light" style="margin-bottom:0px">{{application.status}}, {{application.application_date|date:"F j, Y"}}</p>
+                </div>
+            </button>
+        </h2>
+
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic mixed styles example" style="height:50px">
+                <a href="{% url 'delete_application' application.id %}" class="btn btn-danger w-100">Eliminar</a>
+            </div>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+{% else %}
+    <div class="col-12">
+        <p class="fw-semibold">Ups! No hay aplicaciones todavía.</p>
+        <p class="fw-light"> Postulate a un empleo para comenzar tu busqueda de empleo.</p>
+    </div>
+{% endif %}
+
+</body>
 {% endblock  %}

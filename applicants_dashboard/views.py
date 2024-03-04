@@ -7,7 +7,7 @@ from job_applications.models import JobApplication
 def applicant_dashboard(request, pk):
     # Obtener Datos
     applicant_profile = ApplicantProfile.objects.get(user_id=pk)
-    applications = JobApplication.objects.filter(id=applicant_profile.id)
+    applications = JobApplication.objects.filter(candidate=applicant_profile)
 
     context = {
         'applications': applications,
