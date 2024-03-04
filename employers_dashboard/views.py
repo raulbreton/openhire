@@ -25,7 +25,7 @@ def job_applications(request, job_offer_id):
 
     if not applications:
         message = "No hay aplicaciones para esta oferta de trabajo en este momento."
-        return render(request, 'no_applications.html', {'message': message})
+        return render(request, 'job_applicants.html', {'message': message})
 
     return render(request, 'job_applicants.html', {'applications': applications})
 

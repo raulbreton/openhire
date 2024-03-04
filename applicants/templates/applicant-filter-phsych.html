@@ -1,0 +1,57 @@
+{% extends "applicants-base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Applicant Profile Form</title>
+    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Personal_Data Form -->
+    <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}" class="row g-3">
+      {% csrf_token %}
+      
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fw-semibold" style= "font-size: 18px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Condición Psiquica
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-physical.html' %}">Condición Física o Motora</a></li>
+          <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-sensorial.html' %}">Condición Sensorial</a></li>
+          <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-intelectual.html' %}">Condición Intelectual</a></li>
+        </ul>
+      </div>
+
+      <div class="container mb-3">
+          <label for="inputState" class="form-label">Partes afectadas:</label>
+          {{form.opcion_psiquica}}
+      </div>
+
+      <div class="col-md-6">
+        <label for="input_first_name" class="form-label">Descripcion de Afectacion</label>
+        {{form.descripcion_psiquica}}
+      </div>
+
+      <div class="col-md-6">
+        <label for="input_first_name" class="form-label">Descripcion de Afectacion</label>
+        {{form.adaptaciones_psiquica}}
+      </div>
+
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Add Bootstrap JS and Popper.js scripts here -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+{% endblock %}

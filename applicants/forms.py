@@ -9,16 +9,10 @@ class ApplicantProfileForm(forms.ModelForm):
             'last_names',
             'title',
             'industry',
-            'school',
+            'education',
             'phone',
             'state',
-            'city', 
-            'municipality', 
-            'postal_code', 
-            'neighborhood', 
-            'street_address', 
-            'exterior_number', 
-            'interior_number'
+            'city',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -36,37 +30,33 @@ class ApplicantProfileForm(forms.ModelForm):
                 else:
                     self.fields[field].required = False
 
-class ApplicantFilterForm(forms.ModelForm):
+class ApplicantProfileFilter(forms.ModelForm):
     class Meta:
         model = ApplicantProfile
         fields = [
-            'brazo_izquierdo',
-            'brazo_derecho',
-            'mano_izquierda',
-            'mano_derecha',
-            'pierna_izquierda',
-            'pierna_derecha',
-            'pie_izquierdo',
-            'pie_derecho',
-            'espalda',
-            'cuello',
-            'vista',
-            'oido',
-            'tacto',
-            'sistema_respiratorio',
-            'sistema_cardiovascular',
-            'sistema_neurologico',
-            'sistema_neurologico_sistema_nervioso_periferico',
-            'no_especificado',
+            'descripcion_fisicaMotora',
+            'opcion_fisicaMotora',
+            'afectacion_fisicaMotora',
+            'adaptaciones_fisicaMotora',
+            'descripcion_sensorial',
+            'opcion_sensorial',
+            'afectacion_sensorial',
+            'adaptaciones_sensorial',
+            'descripcion_intelectual',
+            'opcion_intelectual',
+            'independencia',
+            'adaptaciones_intelectual',
+            'descripcion_psiquica',
+            'opcion_psiquica',
+            'adaptaciones_psiquica',
         ]
 
     def __init__(self, *args, **kwargs):
-        super(ApplicantFilterForm, self).__init__(*args, **kwargs)
-
-        """for field in self.fields:
-            if field != 'no especificado':
-                self.fields[field].widget.attrs.update({'class':'onoffswitch','id': 'myonoffswitch'})"""
+        super().__init__(*args, **kwargs)
         
-        mixed_load = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'onoffswitch','id': 'myonoffswitch'}))
-
-        self.fields['no_especificado'].widget.attrs['class'] = 'form-control'
+        #Custom Fields
+        for field in self.fields:
+                if isinstance(self.fields[field].widget, forms.Textarea):
+                    self.fields[field].widget.attrs.update({'class':'form-control', 'rows':4})
+                else:
+                    self.fields[field].widget.attrs.update({'class':'form-select'})

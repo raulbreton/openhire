@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">OpenHire Aplicantes</a>
+    <a class="navbar-brand" href="{% url 'applicants-home' %}">OpenHire Aplicantes</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,20 +25,29 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'applicant-dashboard' request.user.id %}">Mi Panel de Aplicaciones</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'applicant-profile' request.user.id %}">Mi Perfil</a>
+          </li>
+
           <li class="nav-item dropdown">
+
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-              Mi Perfil
+              Mi Filtro Inclusivo
             </a>
+
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'applicant-profile' request.user.id %}">Mis Datos Personales</a></li>
+              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-physical.html' %}">Condición Física o Motora</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id %}">Mi Filtro Inclusivo</a></li>
+              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-sensorial.html' %}">Condición Sensorial</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-intelectual.html' %}">Condición Intelectual</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-phsych.html' %}">Condición Psiquica</a></li>
             </ul>
+
           </li>
           {% endif %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'employers-home' %}">Publicar una Oferta</a>
-          </li>
           <!-- Menú_Secundario -->
           {% if user.is_authenticated and user.is_applicant %}
           <li class="nav-item">

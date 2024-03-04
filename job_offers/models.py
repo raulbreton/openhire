@@ -62,32 +62,64 @@ class JobOffer(models.Model):
     state = models.CharField(max_length=255, choices=STATE_CHOICES, null=True, default='Aguascalientes')
     city = models.CharField(max_length=255, null=True)
 
-    # Extremidades superiores
-    brazo_izquierdo = models.BooleanField(default=False)
-    brazo_derecho = models.BooleanField(default=False)  
-    mano_izquierda = models.BooleanField(default=False) 
-    mano_derecha = models.BooleanField(default=False)   
+    # Discapacidad Física o Motora:
+    PHYSICAL_CHOICES = (
+        ('Brazos', 'Brazos'),
+        ('Manos ', 'Manos '),
+        ('Dedos', 'Dedos'),
+        ('Piernas', 'Piernas'),
+        ('Pies', 'Pies'),
+        ('Columna Vertebral', 'Columna Vertebral'),
+        ('Tronco', 'Tronco'),
+    )
 
-    # Extremidades inferiores
-    pierna_izquierda = models.BooleanField(default=False)
-    pierna_derecha = models.BooleanField(default=False)  
-    pie_izquierdo = models.BooleanField(default=False)   
-    pie_derecho = models.BooleanField(default=False)
+    AFECTACION_CHOICES = (
+        ('Leve', 'Leve'),
+        ('Moderada', 'Moderada'),
+        ('Grave', 'Grave'),
+    )
 
-    # Columna vertebral
-    espalda = models.BooleanField(default=False)
-    cuello = models.BooleanField(default=False) 
+    descripcion_fisicaMotora = models.TextField(max_length=250, blank=True)  
+    opcion_fisicaMotora = models.CharField(blank=True, choices=PHYSICAL_CHOICES)
+    afectacion_fisicaMotora = models.CharField(blank=True, choices=AFECTACION_CHOICES)  
+    adaptaciones_fisicaMotora = models.TextField(max_length=250, blank=True)  
 
-    # Sistema sensorial
-    vista = models.BooleanField(default=False)
-    oido = models.BooleanField(default=False) 
-    tacto = models.BooleanField(default=False)
+    #Discapacidad Sensorial
+    SENSOR_CHOICES = (
+        ('Visual', 'Visual'),
+        ('Manos ', 'Manos '),
+        ('Dedos', 'Dedos'),
+    )
 
-    # Sistemas Corporales
-    sistema_respiratorio = models.BooleanField(default=False)
-    sistema_cardiovascular = models.BooleanField(default=False)
-    sistema_neurologico = models.BooleanField(default=False)
-    sistema_neurologico_sistema_nervioso_periferico = models.BooleanField(default=False)
+    descripcion_sensorial = models.TextField(max_length=250, blank=True)  
+    opcion_sensorial = models.CharField(blank=True, choices=SENSOR_CHOICES)
+    afectacion_sensorial = models.CharField(blank=True, choices=AFECTACION_CHOICES)  
+    adaptaciones_sensorial = models.TextField(max_length=250, blank=True) 
+
+    #Discapacidad Intelectual
+    INTELECTUAL_CHOICES = (
+        ('Memoria', 'Memoria'),
+        ('Razonamiento Lógico', 'Razonamiento Lógico'),
+        ('Habilidades Sociales', 'Habilidades Sociales'),
+        ('Habilidades Motoras', 'Habilidades Motoras'),
+        ('Aprendizaje Académico', 'Aprendizaje Académico'),
+    )
+    
+    descripcion_intelectual = models.TextField(max_length=250, blank=True)  
+    opcion_intelectual = models.CharField(blank=True, choices=INTELECTUAL_CHOICES)
+    independencia = models.CharField(blank=True, choices=AFECTACION_CHOICES)  
+    adaptaciones_intelectual = models.TextField(max_length=250, blank=True)
+
+    #Discapacidad Psiquica
+    PHSYCH_CHOICES = (
+        ('Trastornos del Estado de Ánimo', 'Trastornos del Estado de Ánimo'),
+        ('Trastornos de Ansiedad', 'Trastornos de Ansiedad'),
+        ('Trastornos de la Personalidad', 'Trastornos de la Personalidad'),
+    )
+    
+    descripcion_psiquica = models.TextField(max_length=250, blank=True)  
+    opcion_psiquica = models.CharField(blank=True, choices=PHSYCH_CHOICES)
+    adaptaciones_psiquica = models.TextField(max_length=250, blank=True) 
 
     def __str__(self):
         return(

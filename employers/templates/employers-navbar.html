@@ -32,9 +32,6 @@
             <a class="nav-link active" aria-current="page" href="{% url 'employer-profile' request.user.id %}">Mi Perfil</a>
           </li>
           {% endif %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'applicants-home' %}">Buscar Empleo</a>
-          </li>
           <!-- Menú_Secundario -->
           {% if user.is_authenticated and user.is_employer %}
           <li class="nav-item">

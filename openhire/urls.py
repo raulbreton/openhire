@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from users.views import register_user, login_user, logout_user, register_account_type
 from employers.views import employers_home, employer_profile
-from applicants.views import applicants_home, applicant_profile, applicant_filter, search_job_offers
-from job_offers.views import job_offer_data_view, select_boolean_fields
+from applicants.views import applicants_home, applicant_profile, search_job_offers, applicant_filter
 from job_applications.views import apply_for_job
 from employers_dashboard.views import job_offers, job_applications, application_details, applicant_details
 from applicants_dashboard.views import applicant_dashboard
@@ -21,11 +20,9 @@ urlpatterns = [
     #APPLICANTS
     path('applicants-home', applicants_home, name='applicants-home'),
     path('applicant-profile/<int:pk>/', applicant_profile, name='applicant-profile'),
-    path('applicant-filter/<int:pk>/', applicant_filter, name='applicant-filter'),
+    path('applicant-filter/<int:pk>/<str:site>/', applicant_filter, name='applicant-filter'),
     path('search/', search_job_offers, name='search_job_offers'),
     #JOB OFFER
-    path('create-job_offer', job_offer_data_view, name='create-job_offer'),
-    path('job_offer-inclusive-fields', select_boolean_fields, name='job_offer-inclusive-fields'),
     #JOB APPLICATIONS
     path('job/<int:job_offer_id>/apply/', apply_for_job, name='apply_for_job'),
     #EMPLOYERS DASHBOARD
@@ -34,5 +31,4 @@ urlpatterns = [
     path('application_details/<int:application_id>/', application_details, name='application_details'),
     path('applicant_details/<int:application_id>/', applicant_details, name='applicant_details'),
     #APPLICANTS DASHBOARD
-    path('applicants-dashboard/<int:pk>/', applicant_dashboard, name='applicant-dashboard'),
-]
+    path('applicants-dashboard/<int:pk>/', applicant_dashboard, name='applicant-dashboard'),]

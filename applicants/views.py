@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import ApplicantProfile
 from users.models import CustomUser
-from .forms import ApplicantProfileForm, ApplicantFilterForm
+from .forms import ApplicantProfileForm, ApplicantProfileFilter
 from job_offers.models import JobOffer
 
 def applicants_home(request):
@@ -19,7 +19,7 @@ def applicant_profile(request, pk):
         if form.is_valid():
             form.save()
             #Succes!
-            return redirect('applicant-filter', pk=pk)
+            return redirect('applicants-home')
     else:
         # If it's a GET request, display the form with the existing data
         form = ApplicantProfileForm(instance=applicant_profile)
@@ -31,28 +31,27 @@ def applicant_profile(request, pk):
 
     return render(request, 'applicant-profile.html', context)
 
-@login_required  # restrict access to authenticated users
-def applicant_filter(request, pk):
+def applicant_filter(request, pk, site):
     # Retrieve the ApplicantProfile instance based on the provided primary key (pk)
     applicant_profile = ApplicantProfile.objects.get(user_id=pk)
 
     if request.method == 'POST':
         # If the form is submitted, update the instance with the posted data
-        filter_form = ApplicantFilterForm(request.POST, instance=applicant_profile)
-        if filter_form.is_valid():
-            filter_form.save()
+        form = ApplicantProfileFilter(request.POST, instance=applicant_profile)
+        if form.is_valid():
+            form.save()
             #Succes!
-            return redirect('applicant-filter', pk=pk)
+            return redirect('applicants-home')
     else:
         # If it's a GET request, display the form with the existing data
-        filter_form = ApplicantFilterForm(instance=applicant_profile)
+        form = ApplicantProfileFilter(instance=applicant_profile)
 
     context = {
-        'filter_form': filter_form,
+        'form': form,
         'applicant_profile': applicant_profile,
     }
 
-    return render(request, 'applicant-filter.html', context)
+    return render(request, site, context)
 
 def search_job_offers(request):
     job_title_query = request.GET.get('job_title', '')
