@@ -2,20 +2,6 @@
 {% load static %}
 {% block content %}
 <body>
-
-  <nav class="navbar bg-body-tertiary">
-
-    <div class="container-fluid">
-
-      <a class="navbar-brand" href="{% url 'employers-home'%}">
-        <img style="margin-bottom: 5px;"src="{% static 'back_arrow.ico' %}"alt="Logo" width="30" height="30">
-      </a>
-
-      <h1 style="float:right;" class="display-6">Ofertas</h1>
-
-    </div>
-
-  </nav>
   {% if job_offers %}
     <div class="accordion accordion-flush">
 
@@ -23,7 +9,7 @@
         <div class="accordion-item">
 
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job_offer_{{ job_offer.id }}" aria-expanded="false" aria-controls="job_offer_{{ job_offer.id }}">
               <div class="col-12">
                 <p class="fw-semibold" style="font-size: 18px; margin-bottom:0px">{{job_offer.job_title}}</p>
                 <p class="fw-light" style="margin-bottom:0px">{{job_offer.state}}, {{job_offer.city}}</p>
@@ -31,7 +17,7 @@
             </button>
           </h2>
 
-          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div id="job_offer_{{ job_offer.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic mixed styles example" style="height:50px">
               <a href="{% url 'delete_job_offer' job_offer.id %}" class="btn btn-danger w-100">Eliminar</a>
               <a href="{% url 'mod_job_offer' job_offer.id %}" class="btn btn-primary w-100">Editar</a>
@@ -41,14 +27,14 @@
 
         </div>
 
-        {% endfor %}
+      {% endfor %}
 
     </div>
   {% else %}
-      <div class="col-12">
-          <p class="fw-semibold">Ups! No hay ofertas todavía.</p>
-          <p class="fw-light"> Crea una oferta para comenzar tu busqueda de candidatos.</p>
-      </div>
+    <div class="col-12">
+      <p class="fw-semibold">Ups! No hay ofertas todavía.</p>
+      <p class="fw-light"> Crea una oferta para comenzar tu búsqueda de candidatos.</p>
+    </div>
   {% endif %}
 </body>
 {% endblock %}

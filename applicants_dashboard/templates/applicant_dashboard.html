@@ -6,11 +6,10 @@
 <div class="accordion accordion-flush">
 
     {% for application in applications %}
-
     <div class="accordion-item">
 
         <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#application_{{ application.id }}" aria-expanded="false" aria-controls="application_{{ application.id }}">
                 <div class="col-12">
                     <p class="fw-semibold" style="font-size: 18px; margin-bottom:0px">{{application.job_offer.job_title}}, {{application.job_offer.company_name}}</p>
                     <p class="fw-light" style="margin-bottom:0px">{{application.status}}, {{application.application_date|date:"F j, Y"}}</p>
@@ -18,21 +17,20 @@
             </button>
         </h2>
 
-        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div id="application_{{ application.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic mixed styles example" style="height:50px">
                 <a href="{% url 'delete_application' application.id %}" class="btn btn-danger w-100">Eliminar</a>
             </div>
         </div>
 
     </div>
-
     {% endfor %}
 
 </div>
 {% else %}
     <div class="col-12">
         <p class="fw-semibold">Ups! No hay aplicaciones todavía.</p>
-        <p class="fw-light"> Postulate a un empleo para comenzar tu busqueda de empleo.</p>
+        <p class="fw-light">Postúlate a un empleo para comenzar tu búsqueda de empleo.</p>
     </div>
 {% endif %}
 
