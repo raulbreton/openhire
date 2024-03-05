@@ -3,6 +3,28 @@ from .forms import JobOfferForm
 from employers.models import EmployerProfile
 from django.shortcuts import get_object_or_404
 from .models import JobOffer
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+
+# Load the trained tokenizer and model
+tokenizer = AutoTokenizer.from_pretrained("/home/raulbreton/proyecto_modular/openhire/bert/bert_classifier/checkpoint-12")
+model = AutoModelForSequenceClassification.from_pretrained("/home/raulbreton/proyecto_modular/openhire/bert/bert_classifier/checkpoint-12")
+
+def predict_label(description):
+    # Tokenize the job offer description
+    inputs = tokenizer(description, return_tensors="pt", truncation=True, padding=True)
+
+    # Make the prediction
+    with torch.no_grad():
+        logits = model(**inputs).logits
+
+    # Convert logits to probabilities
+    probabilities = torch.softmax(logits, dim=1)
+
+    # Get the predicted label (0 or 1)
+    predicted_label = torch.argmax(probabilities, dim=1).item()
+
+    return predicted_label
 
 def create_job_offer(request):
     if not request.user.is_authenticated or not request.user.is_employer:
@@ -19,8 +41,15 @@ def create_job_offer(request):
             form.max_salary = float(form.max_salary)
             form.employer_profile = EmployerProfile.objects.get(user=request.user)
 
-            form.save()
-            return redirect('employers-home')  # Redirect to a success page or any desired page
+            # Predict the label for the job offer description
+            description = form.description  # Assuming the description is a field in your form
+            predicted_label = predict_label(description)
+            
+            if predicted_label == 1:
+                form.save()
+                return redirect('employers-home')  # Redirect to a success page or any desired page
+            else:
+                return redirect('create_job_offer')
     else:
         form = JobOfferForm()
         company_name = EmployerProfile.objects.get(user=request.user).company_name  # Retrieve company name from employer's profile
