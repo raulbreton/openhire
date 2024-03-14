@@ -1,0 +1,67 @@
+h1{
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Lora', sans-serif;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+h2{
+    color: white;
+    text-align: center; /* Center horizontally */
+    font-size: 18px;
+    font-family: 'Lora', sans-serif;
+}
+
+.row {
+    display: flex; /* Usa flexbox para alinear elementos */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    height: 80vh; /* Establece la altura de la fila para ocupar toda la altura de la pantalla */
+}
+
+.accordion-item{
+    border-radius: 10px;
+    margin-bottom:10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.accordion-button {
+    width: 100%; /* Ancho del botón al 100% del contenedor */
+    text-align: left; /* Alineación del texto a la izquierda */
+    background-color: #f8f9fa; /* Color de fondo del botón */
+    color: #212529; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 1rem; /* Espaciado interno del botón */
+    border-radius: 10px; /* Borde redondeado */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+.accordion-button:hover {
+    color: #5271ff;
+    background-color: #ffe552; /* Cambio de color de fondo al pasar el ratón */
+}
+
+/* Estilos para el contenido dentro del botón */
+.accordion-button .col-12 {
+    margin: 0; /* Elimina el margen del contenedor */
+    margin-right: -15px;
+}
+
+.accordion-button .fw-semibold {
+    font-size: 18px; /* Tamaño de fuente */
+    margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+.accordion-button .fw-light {
+    margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+.btn-danger {
+    font-family: 'Lora', sans-serif;
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: 100; /* Peso de la fuente */
+}

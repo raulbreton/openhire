@@ -2,68 +2,66 @@
 {% load static %}
 {% block content %}
 <head>
-    <title>Applicant Profile Form</title>
-    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
-    <!-- Add Bootstrap CSS link here -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Employer Profile Form</title>
+    <link rel="stylesheet" href="{% static 'employer_form.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
 </head>
 
 <body>
 
   <div class="container">
-    <p class="fw-semibold" style="font-size: 24px;">Información de contacto</p>
+    <h1>Información de contacto</h1>
 
-    <!-- Personal_Data Form -->
     <form method="post" enctype="multipart/form-data" action="#" class="row g-3">
       {% csrf_token %}
 
       <div class="col-md-6">
-        <label class="form-label">Nombre Compañía*</label>
+        <label class="input-label">Nombre Compañía*</label>
         {{form.company_name}}
       </div>
 
       <div class="col-md-4">
-        <label class="form-label">Industria *</label>
+        <label class="input-label">Industria *</label>
         {{form.industry}}
       </div>
 
       <div class="col-md-2">
-        <label class="form-label">Teléfono *</label>
+        <label class="input-label">Teléfono *</label>
         {{form.phone}}
       </div>
 
       <div class="col-12">
-        <label class="form-label">Calle</label>
+        <label class="input-label">Calle</label>
         {{form.street_address}}
       </div>
 
       <div class="col-12">
-        <label class="form-label">Colonia</label>
+        <label class="input-label">Colonia</label>
         {{form.neighborhood}}
       </div>
 
       <div class="col-md-6">
-        <label class="form-label">Ciudad</label>
+        <label class="input-label">Ciudad</label>
         {{form.city}}
       </div>
 
       <div class="col-md-4">
-        <label class="form-label">Estado</label>
+        <label class="input-label">Estado</label>
         {{form.state}}
       </div>
 
       <div class="col-md-2">
-        <label class="form-label">C.P</label>
+        <label class="input-label">C.P</label>
         {{form.postal_code}}
       </div>
 
       <div class="col-12">
-        <label for="input_first_name" class="form-label">Descripción de la Compañía</label>
+        <label for="input_first_name" class="input-label">Descripción de la Compañía</label>
         {{form.company_description}}
       </div>
 
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+        <button type="submit" class="btn btn-light">Guardar</button>
       </div>
     </form>
   </div>

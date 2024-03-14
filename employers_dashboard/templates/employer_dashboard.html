@@ -1,8 +1,15 @@
 {% extends 'base-employer_dashboard.html' %}
 {% load static %}
 {% block content %}
-<body>
+
+<head>
+    <link rel="stylesheet" href="{% static 'employers_dashboard.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
+</head>
+
+<body style="background-color: #5271ff;">
   {% if job_offers %}
+    <h1>Mis Ofertas</h1>
     <div class="accordion accordion-flush">
 
       {% for job_offer in job_offers %}
@@ -31,10 +38,14 @@
 
     </div>
   {% else %}
-    <div class="col-12">
-      <p class="fw-semibold">Ups! No hay ofertas todavía.</p>
-      <p class="fw-light"> Crea una oferta para comenzar tu búsqueda de candidatos.</p>
-    </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <h1>Ups! No hay ofertas todavía.</h1>
+              <h2>Crea una oferta para comenzar tu búsqueda de candidatos.</h2>
+          </div>
+      </div>
+  </div>
   {% endif %}
 </body>
 {% endblock %}

@@ -35,6 +35,6 @@ def application_details(request, application_id):
     return render(request, 'application_detail.html', {'application':application})
 
 def applicant_details(request, application_id):
-    application = JobApplication.objects.get(id=application_id)
+    applicant = ApplicantProfile.objects.get(id=application_id)
 
-    return render(request, 'applicant_details.html', {'application':application})
+    return render(request, 'applicant_details.html', {'applicant':applicant})

@@ -1,49 +1,55 @@
 {% extends "job_applications-base.html" %}
 {% load static %}
 {% block content %}
+
 <head>
+    <title>Employer Profile Form</title>
+    <link rel="stylesheet" href="{% static 'job_application.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
 </head>
 
 <body>
   <div class = "container">
     <div class="col-12">
-      <p class="fw-semibold" style="font-size: 24px; margin-bottom:0px">Crear Postulación.</p>
-      <p class="fw-light">Tus datos de Perfil y del Filtro Inclusivo se incluirán automáticamente a la aplicación.</p>
+      <h1>Postularse a un Empleo</h1>
+      <h2>Tus datos de Perfil y del Filtro Inclusivo se incluirán automáticamente a la aplicación.</h2>
     </div>
 
     <form method="post" enctype="multipart/form-data" class="row g-3">
       {% csrf_token %}
-        <p class="fw-semibold" style="font-size: 18px; margin-bottom:0px">Experiencia reciente</p>
+        <h3>Experiencia reciente</h3>
       
         <div class="col-md-6">
-          <label class="form-label">Título del Empleo *</label>
+          <label class="input-label">Título del Empleo Reciente *</label>
           {{form.recent_job_title}}
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Compañía</label>
+          <label class="input-label">Compañía en la que se trabajó</label>
           {{form.recent_job_company}}
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Fecha Inicio</label>
+          <label class="input-label">Fecha de Inicio</label>
           {{form.fecha_inicio}}
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Fecha Fin</label>
+          <label class="input-label">Fecha de Terminación</label>
           {{form.fecha_fin}}
         </div>
 
+        <h3>Postulación</h3>
+
         <div class="col-12">
-          <label class="form-label" style="margin-bottom:0px">Carta de Presentación</label>
-          <p class="fw-light">Te recomendamos que escribas en resumidas palabras quien eres profesionalmente.</p>
+          <label class="input-label" style="margin-bottom:0px">Carta de Presentación</label>
+          <p class="help-text">Te recomendamos que escribas en resumidas palabras quien eres profesionalmente.</p>
           {{form.cover_letter}}
         </div>
 
         <div class="col-12">
-          <label class="form-label" style="margin-bottom:0px">Currículum</label>
-          <p class="fw-light" style="margin-bottom:0px">Es esencial subir un currículum actualizado.</p>
+          <label class="input-label" style="margin-bottom:0px">Currículum</label>
+          <p class="help-text" style="margin-bottom:0px">Es esencial subir un currículum actualizado.</p>
         </div>
 
         <div class="input-group mb-3">
@@ -51,7 +57,7 @@
         </div>
       
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-outline-primary">Postularse</button>
+            <button type="submit" class="btn btn-light">Postularse</button>
         </div>
 
     </form>

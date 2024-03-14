@@ -1,23 +1,28 @@
 {% extends 'base-employer_dashboard.html' %}
 {% load static %}
 {% block content %}
-  <body>
+<head>
+    <link rel="stylesheet" href="{% static 'empDashboard_details.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
+</head>
 
-  <div class="container d-flex justify-content-center">
+<body style="background-color: #5271ff;">
+  <div class="container">
     <div class="card" style="width: 100%">
       <div class="card-body" style="width: 100%">
         <div class="col-12">
-            <p class="fw-semibold" style="font-size: 24px; margin-bottom: 0px">{{application.candidate.first_name}} {{application.candidate.last_names}}</p>
-            <p class="fw-light">{{application.cover_letter}}</p>
+            <a href="{% url 'applicant_details' application.candidate.id %}">
+              <h1>{{application.candidate.first_name}} {{application.candidate.last_names}}</h1>
+            </a>
+            <h2>{{application.cover_letter}}</h2>
         </div>
-        <p class="fw-semibold" style="font-size: 17px; margin-bottom: 0px">Experiencia previa</p>
+        <h3>Experiencia previa</h3>
         <div class="col-12">
-            <p class="fw-semibold" style="font-size: 16px; margin-bottom: 0px">{{application.recent_job_title}} - {{application.recent_job_company}}</p>
-            <p class="fw-light">{{application.fecha_inicio}}-{{application.fecha_fin}}</p>
+            <h4>{{application.recent_job_title}} - {{application.recent_job_company}}</h4>
+            <h5>{{application.fecha_inicio}}-{{application.fecha_fin}}</h5>
         </div>
       </div>
     </div>
   </div>
-
-  </body>
+</body>
 {% endblock %}

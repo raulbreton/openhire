@@ -1,3 +1,7 @@
+body{
+    background-color: #5271ff;
+}
+
 .image-container {
     text-align: center;
 }
@@ -20,13 +24,13 @@ img{
 .container{
     position: relative;
     width: 90%;
-    margin-top: 3%;
+    margin-top: 4%;
 }
 
 h1{
     color: white;
     text-align: center;
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     font-family: 'Lora', sans-serif;
 }
@@ -38,6 +42,14 @@ h2{
     font-family: 'Lora', sans-serif;
 }
 
+h3{
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: 'Lora', sans-serif;
+    border-bottom: 2px solid white;
+}
+
 .redirect-link{
     color: white;
     text-align: center; /* Center horizontally */
@@ -47,15 +59,15 @@ h2{
 
 .input-label{
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Lora', sans-serif;
-    margin-top: 30px;
+    font-weight: bold;
 }
 
 .btn-light{
     margin-top: 30px;
     color: #5271ff;;
-    border-radius: 15px;
+    border-radius: 20px;
     font-weight: bold;
     font-family: 'Lora', sans-serif;
     margin-bottom: 30px;
@@ -65,4 +77,10 @@ h2{
 .btn-light:hover {
     color: #5271ff;
     background-color: #ffe552;
+}
+
+.help-text{
+    color: white;
+    font-size: 14px;
+    font-family: 'Lora', sans-serif;
 }
