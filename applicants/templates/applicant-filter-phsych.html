@@ -3,19 +3,18 @@
 {% block content %}
 <head>
     <title>Applicant Profile Form</title>
-    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
-    <!-- Add Bootstrap CSS link here -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'applicant_forms.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #5271ff;">
 
   <div class="container">
 
     <!-- Personal_Data Form -->
     <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}" class="row g-3">
       {% csrf_token %}
-      
+      <h1> Filtro Inclusivo
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle fw-semibold" style= "font-size: 18px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Condición Psiquica
@@ -26,24 +25,25 @@
           <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-intelectual.html' %}">Condición Intelectual</a></li>
         </ul>
       </div>
+      </h1>
 
       <div class="container mb-3">
-          <label for="inputState" class="form-label">Partes afectadas:</label>
+          <label for="inputState" class="input-label">Partes afectadas:</label>
           {{form.opcion_psiquica}}
       </div>
 
       <div class="col-md-6">
-        <label for="input_first_name" class="form-label">Descripcion de Afectacion</label>
+        <label for="input_first_name" class="input-label">Descripcion de Afectacion</label>
         {{form.descripcion_psiquica}}
       </div>
 
       <div class="col-md-6">
-        <label for="input_first_name" class="form-label">Descripcion de Afectacion</label>
+        <label for="input_first_name" class="input-label">Descripcion de Afectacion</label>
         {{form.adaptaciones_psiquica}}
       </div>
 
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+        <button type="submit" class="btn btn-light">Guardar</button>
       </div>
     </form>
   </div>
