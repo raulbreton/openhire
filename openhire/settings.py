@@ -13,7 +13,8 @@ SECRET_KEY = 'django-insecure-z4_7x=1_f+_h9+n*7zl6k8z^bayf9rskqmtokgw@=tj@8e2zgo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','18.191.223.140']
+#ALLOWED_HOSTS = ['127.0.0.1','18.191.223.140']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 #CUSTOM USER
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -122,7 +123,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+"""
 #AWS configuration
 
 AWS_ACCESS_KEY_ID = 'AKIA6GBMB4Y7HH3RTXA7'
@@ -144,4 +145,4 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
     },
-}
+}"""

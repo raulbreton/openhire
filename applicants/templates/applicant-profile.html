@@ -3,59 +3,61 @@
 {% block content %}
 <head>
     <title>Applicant Profile Form</title>
-    <link rel="stylesheet" href="{% static 'profile-styles.css' %}">
-    <!-- Add Bootstrap CSS link here -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'applicant_forms.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #5271ff;">
 
   <div class="container">
-    <p class="fw-semibold" style="font-size: 24px">Información de contacto</p>
+    <h1>Información de contacto</h1>
 
     <!-- Personal_Data Form -->
     <form method="post" enctype="multipart/form-data" action="{% url 'applicant-profile' request.user.id %}" class="row g-3">
       {% csrf_token %}
+
       <div class="col-md-6">
-        <label for="input_first_name" class="form-label">Nombre *</label>
+        <label for="input_first_name" class="input-label">Nombre *</label>
         {{form.first_name}}
       </div>
+
       <div class="col-md-6">
-        <label for="input_last_names" class="form-label">Apellidos *</label>
+        <label for="input_last_names" class="input-label">Apellidos *</label>
         {{form.last_names}}
       </div>
+
       <div class="col-md-12">
-        <label for="input_title" class="form-label">Título de Profesión</label>
+        <label for="input_title" class="input-label">Título de Profesión</label>
         {{form.title}}
       </div>
+
       <div class="col-md-6">
-        <label for="input_industry" class="form-label">Industria</label>
+        <label for="input_industry" class="input-label">Industria</label>
         {{form.industry}}
       </div>
+
       <div class="col-md-6">
-        <label for="input_phone" class="form-label">Telefono Móvil</label>
+        <label for="input_phone" class="input-label">Telefono Móvil</label>
         <div class="input-group">
           <span class="input-group-text">+521</span> {{ form.phone}}
         </div>
       </div>
+
       <div class="col-md-6">
-        <label for="inputCity" class="form-label">Ciudad *</label>
+        <label for="inputCity" class="input-label">Ciudad *</label>
         {{form.city}}
       </div>
+
       <div class="col-md-4">
-        <label for="inputState" class="form-label">Estado *</label>
+        <label for="inputState" class="input-label">Estado *</label>
         {{form.state}}
       </div>
-      <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+
+      <div class="d-grid gap-4">
+        <button type="submit" class="btn btn-light">Guardar</button>
       </div>
+
     </form>
   </div>
-
-  <!-- Add Bootstrap JS and Popper.js scripts here -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 {% endblock %}

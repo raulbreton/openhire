@@ -1,68 +1,66 @@
+{% load static %}
 <head>
-  <style>
-  
-  </style>
 </head>
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'applicants-home' %}">OpenHire Aplicantes</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú Aplicantes</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <!-- Menú_Primario -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'applicants-home' %}">Inicio</a>
-          </li>
-          {% if user.is_authenticated and user.is_applicant %}
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'applicant-dashboard' request.user.id %}">Mi Panel de Aplicaciones</a>
-          </li>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'applicants-home' %}"><img src="{% static 'Logo.png' %}" alt="Logo" style="width: 50px; height: auto;">   OpenHire Aplicantes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú Aplicantes</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <!-- Menú_Primario -->
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'applicants-home' %}">Inicio</a>
+                    </li>
+                    {% if user.is_authenticated and user.is_applicant %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'applicant-dashboard' request.user.id %}">Mi Panel de Aplicaciones</a>
+                    </li>
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'applicant-profile' request.user.id %}">Mi Perfil</a>
-          </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'applicant-profile' request.user.id %}">Mi Perfil</a>
+                    </li>
 
-          <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
 
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-              Mi Filtro Inclusivo
-            </a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                            Mi Filtro Inclusivo
+                        </a>
 
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-physical.html' %}">Condición Física o Motora</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-sensorial.html' %}">Condición Sensorial</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-intelectual.html' %}">Condición Intelectual</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-phsych.html' %}">Condición Psiquica</a></li>
-            </ul>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-physical.html' %}">Condición Física o Motora</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-sensorial.html' %}">Condición Sensorial</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-intelectual.html' %}">Condición Intelectual</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'applicant-filter' request.user.id 'applicant-filter-phsych.html' %}">Condición Psiquica</a></li>
+                        </ul>
 
-          </li>
-          {% endif %}
-          <!-- Menú_Secundario -->
-          {% if user.is_authenticated and user.is_applicant %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="login">Iniciar Sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="register">Crear una Cuenta</a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
+                    </li>
+                    {% endif %}
+                    <!-- Menú_Secundario -->
+                    {% if user.is_authenticated and user.is_applicant %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register">Crear una Cuenta</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>

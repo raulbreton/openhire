@@ -1,34 +1,27 @@
 {% extends "users_base.html" %}
 {% load static %}
 {% block content %}
-    <!DOCTYPE html>
-    <head>
-        <title>Registro de Usuario</title>
-        <link rel="stylesheet" href="{% static 'register-styles.css' %}">
-    </head>
+<head>
+    <title>Seleccionar Tipo de Cuenta</title>
+    <link rel="stylesheet" href="{% static 'users.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
+</head>
 
-    <body>
-        <!-- Navbar -->
-        <nav class="navbar bg-dark border-bottom border-body justify-content-center" data-bs-theme="dark">
-            <a class="navbar-brand" href="{% url 'applicants-home' %}">
-            <img src="{% static 'logo.png' %}"alt="Logo" width="50" height="40">
-            </a>
-        </nav>
-
-        <div class="container" style = "margin-top:80px;">
-            <img src="{% static 'img01-removebg.png' %}"alt="Logo" width="170" height="100" class="img-account">
-            <h3> Listo para el siguiente paso? {{email}}</h3>
-            <p class="headliner-p"> Selecciona la cuenta para las herramientas que te ayudarán </p>
-
+<body>
+    <div class="blue-box">
+        <div class="container">
             <form method="post" action="{% url 'register_account_type' %}">
                 {% csrf_token %}
-                <div class="d-grid gap-2">
-                    <button type="submit" name="account_type" value="applicant" class="btn btn-outline-primary"> Aplicante</button>
-                    <button type="submit" name="account_type" value="employer" class="btn btn-outline-primary"> Empleador</button>
-                </div>
-            </form>
+                <h1>Listo para dar el primer paso?</h1>
+                <h2>Ya eres miembro? <a class="redirect-link" href="{% url 'login' %}">Inicia Sesión</a> </h2>
 
+                <div class="d-grid gap-2">
+                    <button type="submit" name="account_type" value="applicant" class="btn btn-light"> Aplicante</button>
+                    <button type="submit" name="account_type" value="employer" class="btn btn-light"> Empleador</button>
+                </div>
+                
+            </form>
         </div>
-    </body>
-    </html>
+    </div>
+</body>
 {% endblock  %}
