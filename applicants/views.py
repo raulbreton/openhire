@@ -45,7 +45,7 @@ def applicant_filter(request, pk, site):
     else:
         # If it's a GET request, display the form with the existing data
         form = ApplicantProfileFilter(instance=applicant_profile)
-
+        
     context = {
         'form': form,
         'applicant_profile': applicant_profile,
