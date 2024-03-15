@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from users.views import register_user, login_user, logout_user, register_account_type
 from employers.views import employers_home, employer_profile
-from applicants.views import applicants_home, applicant_profile, search_job_offers, applicant_filter
+from applicants.views import applicants_home, applicant_profile, search_job_offers, applicant_filter, job_recommendations
 from job_applications.views import apply_for_job, delete_application, set_status
 from employers_dashboard.views import job_offers, job_applications, application_details, applicant_details
 from applicants_dashboard.views import applicant_dashboard
@@ -37,4 +37,7 @@ urlpatterns = [
     path('application_details/<int:application_id>/', application_details, name='application_details'),
     path('applicant_details/<int:application_id>/', applicant_details, name='applicant_details'),
     #APPLICANTS DASHBOARD
-    path('applicants-dashboard/<int:pk>/', applicant_dashboard, name='applicant-dashboard'),]
+    path('applicants-dashboard/<int:pk>/', applicant_dashboard, name='applicant-dashboard'),
+    #USER BASED FILTER
+    path('job_recommendations/<int:pk>/', job_recommendations, name='job_recommendations'),
+    ]
