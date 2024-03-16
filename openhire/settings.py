@@ -124,25 +124,3 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#AWS configuration
-
-AWS_ACCESS_KEY_ID = 'AKIA6GBMB4Y7HH3RTXA7'
-AWS_SECRET_ACCESS_KEY = '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'
-
-#Basic Storage configuration for Amazon S3
-
-AWS_STORAGE_BUCKET_NAME = 'openhire-bucket'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_FILE_OVERWRITE = False
-
-STORAGES = {
-    #Media file
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
-    },
-
-    #CSS
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
-    },
-}
