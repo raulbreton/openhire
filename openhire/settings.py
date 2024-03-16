@@ -123,7 +123,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-"""
+
 #AWS configuration
 
 AWS_ACCESS_KEY_ID = 'AKIA6GBMB4Y7HH3RTXA7'
@@ -145,4 +145,4 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage"
     },
-}"""
+}
