@@ -69,3 +69,11 @@ h2{
     color: #5271ff;
     background-color: #ffe552;
 }
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}

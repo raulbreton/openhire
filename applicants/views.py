@@ -11,10 +11,21 @@ import scipy.stats
 # Similarity
 from sklearn.metrics.pairwise import cosine_similarity
 import csv
-from io import StringIO
 
 def applicants_home(request):
-    return render( request, "applicants-home.html")
+    if request.user.is_authenticated and request.user.is_applicant:
+        user_id = request.user.id
+        
+        #Get Recommendations
+        recommendations = job_recommendations(user_id)
+        recommendations = [x[0] for x in recommendations]
+        
+        #Get Job Offer Object
+        job_offers = JobOffer.objects.filter(id__in=recommendations)
+        
+        return render(request, "applicants-home.html", {'job_offers' : job_offers})
+    else:
+        return render(request, "applicants-home.html")
 
 @login_required  # restrict access to authenticated users
 def applicant_profile(request, pk):
@@ -70,7 +81,7 @@ def search_job_offers(request):
     
     return render(request, 'search_results.html', {'job_offers': job_offers})
 
-def job_recommendations(request, pk):
+def job_recommendations(pk):
     applicant_profile = ApplicantProfile.objects.get(user_id=pk)
     picked_user = applicant_profile.id
 
@@ -97,8 +108,8 @@ def job_recommendations(request, pk):
     job_applications = pd.read_csv('job_applications.csv')
     job_offers = pd.read_csv('job_offers.csv')
 
-    applications_count = job_applications.groupby('job_offer_id').size().reset_index(name='num_applications')
-    job_offers_with_applications_count = pd.merge(job_offers, applications_count, how='left', left_on='id', right_on='job_offer_id')
+    #applications_count = job_applications.groupby('job_offer_id').size().reset_index(name='num_applications')
+    #job_offers_with_applications_count = pd.merge(job_offers, applications_count, how='left', left_on='id', right_on='job_offer_id')
     
     # Merge job_applications with job_offers to get the relevant data
     merged_data = pd.merge(job_applications, job_offers, how='outer', left_on='job_offer_id', right_on='id')
@@ -110,7 +121,7 @@ def job_recommendations(request, pk):
     matrix[matrix.notnull()] = 1
 
     #Get Users with similarities
-    user_similarity = matrix.T.corr()
+    #user_similarity = matrix.T.corr()
 
     # Convert NaN values to 0 (no application) for cosine similarity calculation
     matrix_filled = matrix.fillna(0)
@@ -170,4 +181,4 @@ def job_recommendations(request, pk):
     # Convertir la lista de diccionarios en una lista de tuplas
     recommendations = [(rec['job_offer_id'], rec['job_offer_score']) for rec in recommendations_list]
 
-    return render(request, 'recommendations.html', {'recommendations': recommendations})
+    return recommendations

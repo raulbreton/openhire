@@ -38,6 +38,4 @@ urlpatterns = [
     path('applicant_details/<int:application_id>/', applicant_details, name='applicant_details'),
     #APPLICANTS DASHBOARD
     path('applicants-dashboard/<int:pk>/', applicant_dashboard, name='applicant-dashboard'),
-    #USER BASED FILTER
-    path('job_recommendations/<int:pk>/', job_recommendations, name='job_recommendations'),
     ]

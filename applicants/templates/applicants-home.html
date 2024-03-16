@@ -8,17 +8,36 @@
 </head>
 
 <body style="background-color: #5271ff;">
-    <h1>Busca una Oferta</h1>
-    <form class="d-flex" role="search" method="GET" action="{% url 'search_job_offers' %}">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="job_title">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <h1 style="margin-top:30px">Busca una Oferta</h1>
+    <div class="container">
 
-    <h1>Top Job Recommendations</h1>
+    <div class="container">
+        <form class="d-flex" role="search" method="GET" action="{% url 'search_job_offers' %}">
+            <input class="form-control me-2" type="search" placeholder="Busca tu proximo trabajo" aria-label="Search" name="job_title">
+            <button class="btn btn-secondary" type="submit">Buscar</button>
+        </form>
+    </div>
+
+    {% if user.is_authenticated and user.is_applicant %}
+    <h1 style="margin-top:50px">Nuestras Recomendaciones</h1>
     <ul>
-        {% for job_id, job_score in recommendations %}
-            <li>{{ job_id }}</li>
-        {% endfor %}
+            {% for job_offer in job_offers %}
+            <div class="container-fluid" style="margin-bottom:10px">
+                <div class="col-md-6 custom-card" style="width: 100%">
+                    <div class="card bg-light" style="width: 18rem; width: 95%">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ job_offer.job_title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ job_offer.company_name }}</h6>
+                            <p class="card-text">{{ job_offer.description }}</p>
+                            <a href="{% url 'apply_for_job' job_offer.id %}" class="card-link"> Postularse</a>
+                            <!-- ... <a href="{% url 'apply_for_job' job_offer.id %}" class="card-link"> Postularse</a> ... -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
     </ul>
+    {% endif %}
+    </div>
 </body>
 {% endblock  %}
