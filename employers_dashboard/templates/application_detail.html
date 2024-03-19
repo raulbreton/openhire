@@ -14,7 +14,8 @@
             <a href="{% url 'applicant_details' application.candidate.id %}">
               <h1>{{application.candidate.first_name}} {{application.candidate.last_names}}</h1>
             </a>
-            <h2>{{application.cover_letter}}</h2>
+            <h2>Carta de Presentacion:</h2>
+            <h4>{{application.cover_letter}}</h4>
         </div>
         <h3>Experiencia previa</h3>
         <div class="col-12">
