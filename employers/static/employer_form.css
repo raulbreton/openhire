@@ -6,6 +6,18 @@ body{
     text-align: center;
 }
 
+.responsive-image {
+    width: 50%; /* Tamaño predeterminado */
+    height: auto; /* Para mantener la proporción de aspecto */
+}
+
+/* Media query para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+    .responsive-image {
+        width: 80%; /* Reducir el tamaño de la imagen en dispositivos móviles */
+    }
+}
+
 img{
     width: 100px;
     height: auto;
@@ -39,6 +51,13 @@ h2{
     color: white;
     text-align: center; /* Center horizontally */
     font-size: 18px;
+    font-family: 'Lora', sans-serif;
+}
+
+.custom-p{
+    color: white;
+    text-align: center; /* Center horizontally */
+    font-size: 16px;
     font-family: 'Lora', sans-serif;
 }
 

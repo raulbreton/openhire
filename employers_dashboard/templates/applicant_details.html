@@ -3,48 +3,69 @@
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="{% static 'empDashboard_details.css' %}">
+    <link rel="stylesheet" href="{% static 'employerDashboard_details.css' %}">
     <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
 </head>
 
 <body style="background-color: #5271ff;">
   <div class="container">
-      <div class="card">
-      <div class="card-body">
-          <h1>{{applicant.first_name}} {{applicant.last_names}}</h1>
-          <h2>{{applicant.title}}</h2>
+    <h1 class="main-header">Detalles del Solicitante</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-12">
+                <h1>{{applicant.first_name}} {{applicant.last_names}}</h1>
+                <h2>{{applicant.title}}</h2>
+            </div>
+            
+            <div class="container text-center">
+                <div class="row">
+                <h3>Informacion del contacto</h3>
+                <h6>Industria: {{applicant.industry}}</h6>
+                <h6>Educación: {{applicant.education}}</h6>
+                <h6>Teléfono: {{applicant.phone}}</h6>
+                <h6>Estado: {{applicant.state}}</h6>
+                <h6>Ciudad: {{applicant.city}}</h6>
+                </div>
+            </div>
 
-          <h3>Informacion del contacto</h3>
-          <h6>Industria: {{applicant.industry}}</h6>
-          <h6>Educación: {{applicant.education}}</h6>
-          <h6>Teléfono: {{applicant.phone}}</h6>
-          <h6>Estado: {{applicant.state}}</h6>
-          <h6>Ciudad: {{applicant.city}}</h6>
+            <div class="container text-center">
+            <div class="row">
+                <div class="col">
+            <h3>Discapacidad Física o Motora</h3>
+            <h6>Descripción: {{applicant.descripcion_fisicaMotora}}</h6>
+            <h6>Opción: {{applicant.opcion_fisicaMotora}}</h6>
+            <h6>Afectación: {{applicant.afectacion_fisicaMotora}}</h6>
+            <h6>Adaptaciones: {{applicant.adaptaciones_fisicaMotora}}</h6>
+                </div>
+                <div class="col">
+            <h3>Discapacidad Sensorial</h3>
+            <h6>Descripción: {{applicant.descripcion_sensorial}}</h6>
+            <h6>Opción: {{applicant.opcion_sensorial}}</h6>
+            <h6>Afectación: {{applicant.afectacion_sensorial}}</h6>
+            <h6>Adaptaciones: {{applicant.adaptaciones_sensorial}}</h6>
+                </div>
+            </div>
+            </div>
 
-          <h3>Discapacidad Física o Motora</h3>
-          <h6>Descripción: {{applicant.descripcion_fisicaMotora}}</h6>
-          <h6>Opción: {{applicant.opcion_fisicaMotora}}</h6>
-          <h6>Afectación: {{applicant.afectacion_fisicaMotora}}</h6>
-          <h6>Adaptaciones: {{applicant.adaptaciones_fisicaMotora}}</h6>
-
-          <h3>Discapacidad Sensorial</h3>
-          <h6>Descripción: {{applicant.descripcion_sensorial}}</h6>
-          <h6>Opción: {{applicant.opcion_sensorial}}</h6>
-          <h6>Afectación: {{applicant.afectacion_sensorial}}</h6>
-          <h6>Adaptaciones: {{applicant.adaptaciones_sensorial}}</h6>
-
-          <h3>Discapacidad Intelectual</h3>
-          <h6>Descripción: {{applicant.descripcion_intelectual}}</h6>
-          <h6>Opción: {{applicant.opcion_intelectual}}</h6>
-          <h6>Independencia: {{applicant.independencia}}</h6>
-          <h6>Adaptaciones: {{applicant.adaptaciones_intelectual}}</h6>
-
-          <h3>Discapacidad Psíquica</h3>
-          <h6>Descripción: {{applicant.descripcion_psiquica}}</h6>
-          <h6>Opción: {{applicant.opcion_psiquica}}</h6>
-          <h6>Adaptaciones: {{applicant.adaptaciones_psiquica}}</h6>
+                        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+            <h3>Discapacidad Intelectual</h3>
+            <h6>Descripción: {{applicant.descripcion_intelectual}}</h6>
+            <h6>Opción: {{applicant.opcion_intelectual}}</h6>
+            <h6>Independencia: {{applicant.independencia}}</h6>
+            <h6>Adaptaciones: {{applicant.adaptaciones_intelectual}}</h6>
+                </div>
+                <div class="col">
+            <h3>Discapacidad Psíquica</h3>
+            <h6>Descripción: {{applicant.descripcion_psiquica}}</h6>
+            <h6>Opción: {{applicant.opcion_psiquica}}</h6>
+            <h6>Adaptaciones: {{applicant.adaptaciones_psiquica}}</h6>
+                </div>
+            </div>
+            </div>
       </div>
-      </div>
+    </div>
   </div>
 </body>
 {% endblock %}

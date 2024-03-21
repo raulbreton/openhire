@@ -1,0 +1,61 @@
+.main-header{
+    color: white;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Lora', sans-serif;
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
+h1{
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Lora', sans-serif;
+}
+
+h2{
+    text-align: center; /* Center horizontally */
+    font-size: 28px;
+    font-family: 'Lora', sans-serif;
+    color: dimgray;
+    border-bottom: 2px solid;
+    margin-bottom: 10px;
+}
+
+h3{
+    font-size: 28px;
+    font-family: 'Lora', sans-serif;
+    font-weight: bold;
+}
+
+h4{
+    text-align: justify; /* Center horizontally */
+    font-size: 23px;
+    font-family: 'Lora', sans-serif;
+}
+
+h5{
+    text-align: justify; /* Center horizontally */
+    font-size: 20px;
+    font-family: 'Lora', sans-serif;
+    color: dimgray;
+}
+
+h6{
+    font-size: 20px;
+    font-family: 'Lora', sans-serif;
+}
+
+.custom-btn {
+    font-size: 18px; /* Cambiar el tamaño de la fuente */
+    font-family: Arial, sans-serif; /* Cambiar la fuente */
+    text-align: center; /* Centrar el texto */
+    padding: 10px; /* Añadir un poco de espacio alrededor del texto */
+  }
+  
+  .custom-btn:hover {
+    opacity: 0.8; /* Cambiar la opacidad cuando se pasa el mouse sobre el botón */
+  }
+  

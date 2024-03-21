@@ -1,5 +1,36 @@
 {% extends "employers-base.html" %}
 {% load static %}
 {% block content %}
-<img src="{% static 'users.png' %}" alt="Logo" style="width: 100%; height: auto;">
+<head>
+    <title>Employer Profile Form</title>
+    <link rel="stylesheet" href="{% static 'employer_form.css' %}">
+    <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bienvenido a el Portal Inclusivo de México</h1>
+        <div class="container image-container" style="margin-top:1%">
+            <img src="{% static 'home_img.png' %}" alt="Home Image" class="responsive-image">
+        </div>
+
+        <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1>Misión</h1>
+                <p class="custom-p">Nuestra misión es simple pero poderosa: conectar a empleadores comprometidos con la diversidad y el talento excepcional de personas de todos los ámbitos de la vida.</p>
+            </div>
+            <div class="col">
+                <h1>Problemática</h1>
+                <p class="custom-p">“En México existe un millón de personas con discapacidad, pero 7 de cada 10 de ellas están sin trabajo, por lo que sólo 30% participa en el mercado laboral.” (Forbes México)</p>
+            </div>
+            <div class="col">
+                <h1>Compromiso</h1>
+                <p class="custom-p">OpenHire creará un espacio de oportunidades inclusivas en México, la cual, tiene un impacto social significativo en un país donde el 70% de las personas con discapacidad enfrentan desafíos laborales.</p>
+            </div>
+        </div>
+        </div>
+
+    </div>
+</body>
 {% endblock  %}
