@@ -42,6 +42,18 @@ h2{
     font-family: 'Lora', sans-serif;
 }
 
+.white-p{
+    color: white;
+    font-size: 18px;
+    font-family: 'Lora', sans-serif;
+}
+
+li{
+    color: white;
+    font-size: 16px;
+    font-family: 'Lora', sans-serif; 
+}
+
 .redirect-link{
     color: white;
     text-align: center; /* Center horizontally */

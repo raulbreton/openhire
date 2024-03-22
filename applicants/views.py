@@ -67,7 +67,6 @@ def applicant_filter(request, pk, site):
         
     context = {
         'form': form,
-        'applicant_profile': applicant_profile,
     }
 
     return render(request, site, context)
@@ -76,7 +75,7 @@ def search_job_offers(request):
     job_title_query = request.GET.get('job_title', '')
     job_offers = JobOffer.objects.filter(job_title__icontains=job_title_query)
 
-    if not job_offers:
+    if not job_offers or job_title_query == '':
         return render(request, 'no_results.html', {'job_title_query': job_title_query})
     
     return render(request, 'search_results.html', {'job_offers': job_offers})
