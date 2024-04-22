@@ -11,17 +11,31 @@
 <body>
 <div class="blue-box">
     <div class="container">
-        <form method="post" action="">
+        <form method="post" action="" novalidate>
             {% csrf_token %}
             <h1>Inicia Sesión</h1>
             <h2>No eres miembro? <a class="redirect-link" href="{% url 'register' %}">Regístrate aquí</a> </h2>
+            
+            <!-- Output error messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 0%">
+                            {{message}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
             <!-- Input para el correo electrónico -->
             <label class="input-label">EMAIL</label>
-            <input type="email" name="email" class="form-control transparent-input" placeholder="correo@example.com" required>
+            <input type="email" name="email" class="form-control" placeholder="correo@example.com" required>
+
             
             <!-- Input para la contraseña -->
             <label class="input-label">CONTRASEÑA</label>
             <input type="password" name="password" class="form-control transparent-input" placeholder="******" required>
+            
 
             <!-- Botón de inicio de sesión -->
             <div class="d-grid gap-2">

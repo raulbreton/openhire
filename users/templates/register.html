@@ -16,23 +16,31 @@
                 <h1>Listo para dar el primer paso?</h1>
                 <h2>Ya eres miembro? <a class="redirect-link" href="{% url 'login' %}">Inicia Sesión</a> </h2>
 
+                <!-- Output form errors -->
+                {% if form.errors %}
+                    <ul>
+                        {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 0%">
+                                {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
                 <!-- Input para el correo electrónico -->
                 <label class="input-label">EMAIL</label>
-                <div type="email" name="email" class="form-control transparent-input" placeholder="correo@example.com" required>
-                    {{ form.email }}
-                </div>
+                {{ form.email }}
                 
                 <!-- Input para la contraseña -->
-                <label class="input-label">CONTRASEÑA</label>
-                <div type="password" name="password" class="form-control transparent-input" placeholder="******" required>
-                    {{ form.password1 }}
-                </div>
+                <label class="input-label">CONTRASEÑA</label><br>
+                <label class="input-label" style="margin-top: 0%; font-weight: bold;">La contraseña debe ser alfanumerica y de minimo 8 caracteres.</label>
+                {{ form.password1 }}
 
                 <!-- Input para la contraseña -->
                 <label class="input-label">CONFIRMA CONTRASEÑA</label>
-                <div type="password" name="password2" class="form-control transparent-input" placeholder="******" required>
-                    {{ form.password2 }}
-                </div>
+                {{ form.password2 }}
 
                 <!-- Botón de inicio de sesión -->
                 <div class="d-grid gap-2">

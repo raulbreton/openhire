@@ -27,6 +27,7 @@ def register_user(request):
             return redirect('register_account_type')
         else:
             # If the form is not valid, render the registration form again with validation errors
+            #messages.error(request, 'Correo electrónico o contraseña incorrectos. Por favor, inténtalo de nuevo.')
             return render(request, "register.html", {'form': form})
 
     # Render the registration form (GET request or after successful submission)
@@ -141,6 +142,7 @@ def login_user(request):
         else:
             # If authentication fails, display an error message
             messages.error(request, 'Correo electrónico o contraseña incorrectos. Por favor, inténtalo de nuevo.')
+            return render(request, "login.html", {})
 
     # If the request method is not POST, render the login.html template
     return render(request, "login.html", {})
