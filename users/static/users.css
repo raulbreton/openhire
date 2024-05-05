@@ -1,68 +1,171 @@
-.image-container {
-    text-align: center;
-}
-
 img{
-    width: 100px;
-    height: auto;
+    width: 83px;
+    height: 58;
 }
 
-.blue-box{
-    position: relative;
-    padding-bottom: 225px;
-    border-radius: 10px;
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .main-heading-text {
+        font-size: 24px;
+        margin-left: 0px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+}
+
+.rounded-pill.primary-button{
+    border-color: #5271ff;
+    border-width: 2.5px;
+    color: #5271ff;
+    padding: 15px 35px;
+}
+
+.rounded-pill.primary-button:hover {
     background-color: #5271ff;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+    color: #ffffff;
+}
+
+.rounded-pill {
+    font-weight: bold;
+    padding: 15px 35px;
+}
+
+.rounded-pill:hover {
+    background-color: lightgray;
+    color: black;
+}
+
+.head-container {
+    position: relative;
+}
+
+.buttons-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.main-heading-text {
+    color: rgb(178, 64, 32);
+    font-weight: 100;
+    font-size: 56px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+    .main-heading-text {
+        font-size: 2em;
+    }
 }
 
 .container{
-    position: relative;
-    width: 90%;
-    margin-top: 3%;
+    margin-bottom: 20px;
 }
 
-h1{
-    color: white;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    font-family: 'Lora', sans-serif;
+.row {
+    padding-bottom: 30px;
 }
 
-h2{
+
+.rounded-pill.submit-button{
+    background-color: #5271ff;
+    border-width: 2.5px;
     color: white;
-    text-align: center; /* Center horizontally */
-    font-size: 18px;
-    font-family: 'Lora', sans-serif;
+    padding: 10px 35px;
 }
 
-.redirect-link{
-    color: white;
-    text-align: center; /* Center horizontally */
-    font-size: 18px;
-    font-family: 'Lora', sans-serif;
+.rounded-pill.submit-button:hover {
+    background-color: #1f3dc2;
+    color: #ffffff;
+}
+
+.form-control {
+    border-color: black;
+    border-radius: 5px;
+    padding: 10px 35px;
 }
 
 .input-label{
-    color: white;
-    font-size: 14px;
-    font-family: 'Lora', sans-serif;
-    margin-top: 30px;
+    font-weight: 500;
 }
 
-.btn-light{
-    margin-top: 30px;
-    color: #5271ff;;
-    border-radius: 15px;
-    font-weight: bold;
-    font-family: 'Lora', sans-serif;
-    margin-bottom: 30px;
+.col img {
+    width: 500px;
+    height: auto;
+}
+
+.col.img-col{
+    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+    .col img {
+        width: 390px;
+    }
+    .col.img-col{
+        text-align: center;
+    }
+}
+
+/* Register */
+body.register-body{
+    background-color: #ededed;
+}
+
+.container.main-logo{
+    width: 90%;
+    background: transparent;
+    margin-bottom: 0%;
+}
+
+.register-header{
+    text-align: center;
+    font-size: 34px;
+    margin-top: 0%;
+}
+
+.container.register-form{
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .container.register-form {
+        width: 100%;
+        margin-top: 0%;
+    }
+    .container.main-logo{
+        width: 100%;
+        background-color: white;
+    }
+    body.register-body{
+        background-color: white;
+    }
+    .container.main-logo{
+        margin-bottom: 10%;
+    }
+    .register-header{
+        margin-bottom: 0%;
+    }
+}
+
+.row.login-redirect{
     text-align: center;
 }
 
-.btn-light:hover {
-    color: #5271ff;
-    background-color: #ffe552;
+.custom-alert{
+    width: 100%;
+}
+
+.container.register-header{
+    text-align: center;
 }

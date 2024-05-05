@@ -18,7 +18,7 @@
         </form>
     </div>
 
-    {% if user.is_authenticated and user.is_applicant %}
+    {% if user.is_authenticated and user.is_applicant and job_offers %}
     <h1 style="margin-top:50px">Nuestras Recomendaciones</h1>
     <ul>
             {% for job_offer in job_offers %}

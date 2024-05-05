@@ -17,13 +17,16 @@ def applicants_home(request):
         user_id = request.user.id
         
         #Get Recommendations
-        recommendations = job_recommendations(user_id)
-        recommendations = [x[0] for x in recommendations]
-        
-        #Get Job Offer Object
-        job_offers = JobOffer.objects.filter(id__in=recommendations)
-        
-        return render(request, "applicants-home.html", {'job_offers' : job_offers})
+        try:
+            recommendations = job_recommendations(user_id)
+            recommendations = [x[0] for x in recommendations]
+            
+            #Get Job Offer Object
+            job_offers = JobOffer.objects.filter(id__in=recommendations)
+            
+            return render(request, "applicants-home.html", {'job_offers' : job_offers})
+        except:
+            return render(request, "applicants-home.html")
     else:
         return render(request, "applicants-home.html")
 

@@ -18,6 +18,19 @@
     <form method="post" enctype="multipart/form-data" class="row g-3">
       {% csrf_token %}
         <h3>Experiencia reciente</h3>
+
+        <!-- Output form errors -->
+        {% if form.errors %}
+            <ul>
+                {% for field, error_list in form.errors.items %}
+                    {% for error in error_list %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 0%">
+                        {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
       
         <div class="col-md-6">
           <label class="input-label">Título del Empleo Reciente *</label>

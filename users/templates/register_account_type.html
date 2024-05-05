@@ -7,21 +7,30 @@
     <link href="https://fonts.cdnfonts.com/css/lora-4" rel="stylesheet">
 </head>
 
-<body>
-    <div class="blue-box">
-        <div class="container">
-            <form method="post" action="{% url 'register_account_type' %}">
-                {% csrf_token %}
-                <h1>Listo para dar el primer paso?</h1>
-                <h2>Ya eres miembro? <a class="redirect-link" href="{% url 'login' %}">Inicia Sesión</a> </h2>
+<body class="register-body">
+    <div class="container main-logo">
+        <img src="{% static 'Logo.png' %}" alt="Logo">
+    </div>
 
-                <div class="d-grid gap-2">
-                    <button type="submit" name="account_type" value="applicant" class="btn btn-light"> Aplicante</button>
-                    <button type="submit" name="account_type" value="employer" class="btn btn-light"> Empleador</button>
+    <div class="container register-header">
+        <h1 class="register-header">Selecciona el tipo de cuenta</h1>
+    </div>
+
+    <div class="container register-form">
+        <form method="post" action="{% url 'register_account_type' %}">
+            {% csrf_token %}
+
+            <div class="container" style="margin-top:30px">
+                <div class="row">
+                    <button type="submit" name="account_type" value="applicant" class="btn rounded-pill submit-button"  style="margin-top: 30px"> Aplicante</button>
                 </div>
-                
-            </form>
-        </div>
+
+                <div class="row">
+                    <button type="submit" name="account_type" value="employer"  class="btn rounded-pill submit-button"> Empleador</button>
+                </div>
+            </div>
+            
+        </form>
     </div>
 </body>
 {% endblock  %}

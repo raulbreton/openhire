@@ -9,40 +9,60 @@
 </head>
 
 <body>
-<div class="blue-box">
-    <div class="container">
-        <form method="post" action="" novalidate>
-            {% csrf_token %}
-            <h1>Inicia Sesión</h1>
-            <h2>No eres miembro? <a class="redirect-link" href="{% url 'register' %}">Regístrate aquí</a> </h2>
-            
-            <!-- Output error messages -->
-            {% if messages %}
-                {% for message in messages %}
-                    {% if message.tags == 'error' %}
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 0%">
-                            {{message}}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
 
-            <!-- Input para el correo electrónico -->
-            <label class="input-label">EMAIL</label>
-            <input type="email" name="email" class="form-control" placeholder="correo@example.com" required>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <img src="{% static 'Logo.png' %}" alt="Logo">
+            <form class="d-flex" role="search">
+                <a href="{% url 'register' %}"><button type="button" class="btn rounded-pill" >Registrarse</button></a>
+                <button type="button" class="btn rounded-pill primary-button">Inicia sesión</button>
+            </form>
+        </div>
+    </nav>
 
-            
-            <!-- Input para la contraseña -->
-            <label class="input-label">CONTRASEÑA</label>
-            <input type="password" name="password" class="form-control transparent-input" placeholder="******" required>
-            
-
-            <!-- Botón de inicio de sesión -->
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-light">Inicia Sesión</button>
-            </div>
-        </form>
+    <div class="container header">
+    <h1 class="main-heading-text">¡Bienvenido al sitio de las <br> Oportunidades Inclusivas!</h1>
     </div>
-</div>
+
+    <div class="container main-container">
+        <div class="row">
+            <div class="col">
+                <form method="post" action="" novalidate>
+                    {% csrf_token %}
+                    <!-- Output error messages -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 30px">
+                                    {{message}}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="container">
+                        <div class="row">
+                            <label class="input-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="row">
+                            <label class="input-label">Contraseña</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        
+                        <div class="row">
+                            <button type="submit" class="btn rounded-pill submit-button">Inicia sesión</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col img-col">
+                <img src="{% static 'users-img.jpg' %}" alt="Site Image">
+            </div>
+        </div>
+    </div>
+
 </body>
 {% endblock  %}
