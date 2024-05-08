@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-z4_7x=1_f+_h9+n*7zl6k8z^bayf9rskqmtokgw@=tj@8e2zgo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','18.191.223.140']
+ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = []
 
 #CUSTOM USER
@@ -134,4 +134,23 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.parse(env('DATABASE_URL'))
+}
+
+AWS_ACCESS_KEY_ID = env('AWS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_KEY')
+
+AWS_STORAGE_BUCKET_NAME = 'openhire-bucket'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_FILE_OVERWRITE = False
+
+STORAGES = {
+    #Media Files
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+
+    #CSS
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    }
 }

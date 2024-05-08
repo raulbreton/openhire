@@ -9,6 +9,7 @@ from applicants_dashboard.views import applicant_dashboard
 from job_offers.views import create_job_offer, mod_job_offer, delete_job_offer
 
 urlpatterns = [
+    path('', login_user, name='login'),
     path('admin/', admin.site.urls),
     #USERS
     path('register/', register_user, name='register'),
